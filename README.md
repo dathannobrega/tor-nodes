@@ -311,6 +311,6 @@ Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICE
 
 **⭐ Se este projeto foi útil para você, considere dar uma estrela!**
 
-[![GitHub stars](https://img.shields.io/github/stars/dathannobrega/datan-tor-nodes.svg?style=social&label=Star)](https://github.com/dathannobrega/tor-nodes)
+[![GitHub stars](https://img.shields.io/github/stars/dathannobrega/tor-nodes.svg?style=social&label=Star)](https://github.com/dathannobrega/tor-nodes)
 
 </div>
