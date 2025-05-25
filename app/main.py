@@ -341,13 +341,6 @@ def index():
                     <br>
                     <p>Este projeto foi desenvolvido para auxiliar administradores de sistema, pesquisadores de segurança e profissionais de TI que precisam identificar e monitorar o tráfego proveniente da rede Tor.</p>
                     <br>
-                    <p><strong>Características principais:</strong></p>
-                    <ul style="margin-left: 20px; margin-top: 10px;">
-                        <li>✅ Atualização automática a cada 10 dias</li>
-                        <li>✅ Cache inteligente para performance</li>
-                        <li>✅ API simples e confiável</li>
-                        <li>✅ Formato de saída padronizado</li>
-                        <li>✅ Monitoramento 24/7</li>
                     </ul>
                 </div>
                 
@@ -384,13 +377,10 @@ curl https://tor.protexion.cloud/tornodes-ip.txt
                     <a href="https://check.torproject.org/exit-addresses" target="_blank">Tor Project Official API</a></p>
                     
                     <p><strong>🔄 Frequência de Atualização:</strong><br>
-                    Cache renovado automaticamente a cada 10 dias</p>
+                    Cache renovado automaticamente a cada 12 horas</p>
                     
                     <p><strong>📈 Performance:</strong><br>
                     Resposta em milissegundos com sistema de cache otimizado</p>
-                    
-                    <p><strong>🛡️ Confiabilidade:</strong><br>
-                    Monitoramento 24/7 com tratamento de erros robusto</p>
                 </div>
                 
                 <div class="card">
@@ -418,8 +408,8 @@ curl https://tor.protexion.cloud/tornodes-ip.txt
                     <div class="stat-label">Monitoramento</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-number">10</div>
-                    <div class="stat-label">Dias de Cache</div>
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Horas de Cache</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-number">99.9%</div>
