@@ -6,7 +6,7 @@ import requests
 
 CACHE_FILE = '/tmp/tor_exit_cache.txt'
 CACHE_TIMESTAMP = '/tmp/tor_exit_timestamp.txt'
-CACHE_TTL_DAYS = 10
+CACHE_TTL_HOUR = 12
 
 app = Flask(__name__)
 
@@ -32,7 +32,7 @@ def needs_update() -> bool:
     with open(CACHE_TIMESTAMP, 'r') as f:
         ts = float(f.read().strip())
     last = datetime.utcfromtimestamp(ts)
-    return datetime.utcnow() - last > timedelta(days=CACHE_TTL_DAYS)
+    return datetime.utcnow() - last > timedelta(hours=CACHE_TTL_HOUR)
 
 def update_cache():
     print(f"[{datetime.utcnow()}] Atualizando cache dos nós Tor...")
@@ -86,7 +86,7 @@ def index():
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>DataN TOR Nodes - Monitoramento de Nós Tor</title>
+        <title>Protexion TOR Nodes - Monitoramento de Nós Tor</title>
         <meta name="description" content="Serviço de monitoramento e listagem de nós Tor exit em tempo real">
         <meta name="keywords" content="tor, nodes, exit, ip, security, privacy, monitoring">
         <meta name="author" content="Dathan Nobrega">
@@ -324,7 +324,7 @@ def index():
    ╚═╝    ╚═════╝ ╚═╝  ╚═╝    ╚═╝  ╚═══╝ ╚═════╝ ╚═════╝ ╚══════╝╚══════╝
                 </div>
                 
-                <h1 class="main-title">🧅 DataN TOR Nodes</h1>
+                <h1 class="main-title">🧅 Protexion TorNodes</h1>
                 <p class="subtitle">Monitoramento em Tempo Real de Nós Tor Exit</p>
                 
                 <div class="domain-info">
@@ -337,7 +337,7 @@ def index():
             <div class="grid">
                 <div class="card">
                     <h3>📋 Sobre o Projeto</h3>
-                    <p>O <strong>DataN TOR Nodes</strong> é um serviço de monitoramento que fornece uma lista atualizada dos endereços IP dos nós Tor exit em tempo real.</p>
+                    <p>O <strong>Protexion TorNodes</strong> é um serviço de monitoramento que fornece uma lista atualizada dos endereços IP dos nós Tor exit em tempo real.</p>
                     <br>
                     <p>Este projeto foi desenvolvido para auxiliar administradores de sistema, pesquisadores de segurança e profissionais de TI que precisam identificar e monitorar o tráfego proveniente da rede Tor.</p>
                     <br>
@@ -451,7 +451,7 @@ ips = [line for line in response.text.split('\\n') if not line.startswith('#')]
                 </div>
                 
                 <div style="margin-top: 40px; padding-top: 20px; border-top: 1px solid #333;">
-                    <p>🛡️ <strong>DataN TOR Nodes Service</strong> - Desenvolvido por <strong>Dathan Nobrega</strong></p>
+                    <p>🛡️ <strong>Protexion TorNodes Service</strong> - Desenvolvido por <strong>Dathan Nobrega</strong></p>
                     <p>🌐 Hospedado em <a href="https://tor.protexion.cloud" target="_blank">tor.protexion.cloud</a></p>
                     <p style="margin-top: 15px; color: #666;">
                         © 2024 DataN. Este serviço é fornecido "como está" para fins educacionais e de pesquisa.
@@ -492,7 +492,7 @@ def tornodes_ip():
         error_content = f"""################################################################
 # DataN TOR NODE  (IPs only) - ERRO                           #
 # Error occurred: {str(e)}                                    #
-# Last attempt: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')} UTC                              #
+# Last attempt: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')} UTC                     #
 #                                                              #
 # Social media: https://www.linkedin.com/in/dathannobrega/     #
 # For questions please contact contato@datan.com.br            #
@@ -528,7 +528,7 @@ def status():
             ip_count = 0
         
         status_info = {
-            'service': 'DataN TOR Nodes',
+            'service': 'Protexion TorNodes',
             'status': 'online',
             'cache_exists': cache_exists,
             'timestamp_exists': timestamp_exists,
@@ -545,14 +545,14 @@ def status():
     except Exception as e:
         from flask import jsonify
         return jsonify({
-            'service': 'DataN TOR Nodes',
+            'service': 'Protexion TorNodes',
             'status': 'error',
             'error': str(e),
             'current_time': datetime.utcnow().isoformat()
         }), 500
 
 if __name__ == '__main__':
-    print("🧅 Iniciando DataN TOR Nodes Service...")
+    print("🧅 Iniciando Protexion TorNodes Service...")
     print("📡 Verificando cache inicial...")
     
     try:
