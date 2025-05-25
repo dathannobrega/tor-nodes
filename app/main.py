@@ -396,7 +396,7 @@ curl https://tor.protexion.cloud/tornodes-ip.txt
                 <div class="card">
                     <h3>👨‍💻 Sobre o Desenvolvedor</h3>
                     <p><strong>Dathan Nobrega</strong></p>
-                    <p>Especialista em Segurança da Informação e Desenvolvimento de Sistemas</p>
+                    <p>Especialista em Segurança da Informação</p>
                     
                     <div class="social-links">
                         <a href="https://github.com/dathannobrega" target="_blank" class="social-link">
@@ -405,7 +405,7 @@ curl https://tor.protexion.cloud/tornodes-ip.txt
                         <a href="https://www.linkedin.com/in/dathannobrega/" target="_blank" class="social-link">
                             <span>💼</span> LinkedIn
                         </a>
-                        <a href="mailto:contato@datan.com.br" class="social-link">
+                        <a href="mailto:dathan.nobrega@datan.com.br" class="social-link">
                             <span>📧</span> Email
                         </a>
                     </div>
