@@ -11,7 +11,7 @@ CACHE_TTL_HOUR = 12
 app = Flask(__name__)
 
 HEADER = """################################################################
-# DataN TOR NODE  (IPs only)                                   #
+# TOR NODE  (IPs only)                                         #
 # Last updated: {updated} UTC                                 #
 # Source: https://check.torproject.org/exit-addresses          #
 #                                                              #
