@@ -44,7 +44,7 @@ Um serviço web Python que fornece uma lista atualizada dos endereços IP dos n�
 1. **Clone o repositório:**
    ```bash
    git clone https://github.com/dathannobrega/tor-nodes.git
-   cd datan-tor-nodes/app
+   cd tor-nodes/app
    ```
 
 2. **Instale as dependências:**
@@ -65,10 +65,10 @@ Um serviço web Python que fornece uma lista atualizada dos endereços IP dos n�
 
 ```bash
 # Build da imagem
-docker build -t datan-tor-nodes .
+docker build -t tor-nodes .
 
 # Executar container
-docker run -p 8000:8000 datan-tor-nodes
+docker run -p 8000:8000 tor-nodes
 ```
 
 ### Produção com Gunicorn
@@ -311,6 +311,6 @@ Este projeto está licenciado sob a Licença MIT - veja o arquivo [LICENSE](LICE
 
 **⭐ Se este projeto foi útil para você, considere dar uma estrela!**
 
-[![GitHub stars](https://img.shields.io/github/stars/dathannobrega/datan-tor-nodes.svg?style=social&label=Star)](https://github.com/dathannobrega/datan-tor-nodes)
+[![GitHub stars](https://img.shields.io/github/stars/dathannobrega/datan-tor-nodes.svg?style=social&label=Star)](https://github.com/dathannobrega/tor-nodes)
 
 </div>
