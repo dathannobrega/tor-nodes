@@ -221,6 +221,28 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initialize
   updateStats()
 
+  // Load dynamic URL list
+  async function loadUrlList() {
+    try {
+      const response = await fetch("/honeypot-urls.txt")
+      const text = await response.text()
+      const urls = text.split("\n").filter((line) => line && !line.startsWith("#"))
+      const listEl = document.getElementById("urlList")
+      if (listEl) {
+        listEl.innerHTML = ""
+        urls.forEach((url) => {
+          const li = document.createElement("li")
+          li.textContent = url
+          listEl.appendChild(li)
+        })
+      }
+    } catch (error) {
+      console.log("Erro ao carregar URLs:", error)
+    }
+  }
+
+  loadUrlList()
+
   // Update stats every 30 seconds
   setInterval(updateStats, 30000)
 

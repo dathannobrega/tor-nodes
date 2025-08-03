@@ -1016,6 +1016,32 @@ html {
   }
 }
 
+/* URL List */
+.url-list {
+  list-style: none;
+  margin-top: 24px;
+  padding: 24px;
+  background: var(--dark-light);
+  border-radius: var(--border-radius);
+  max-height: 400px;
+  overflow-y: auto;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+}
+
+.url-list li {
+  padding: 4px 0;
+  border-bottom: 1px solid var(--dark-lighter);
+}
+
+.url-list li:last-child {
+  border-bottom: none;
+}
+
+.url-actions {
+  margin-top: 24px;
+}
+
 /* Focus styles for accessibility */
 .btn:focus,
 .nav-link:focus,
