@@ -60,6 +60,7 @@ Um serviço web Python que fornece uma lista atualizada dos endereços IP dos n�
 4. **Acesse o serviço:**
    - Interface web: http://localhost:8000
    - Lista de IPs: http://localhost:8000/tornodes-ip.txt
+   - Lista de URLs: http://localhost:8000/honeypot-urls.txt
 
 ### Instalação com Docker
 
@@ -81,10 +82,11 @@ gunicorn --bind 0.0.0.0:8000 --workers 4 main:app
 
 ### Acesso Rápido
 
-O serviço fornece uma lista de IPs dos nós Tor exit em formato texto simples:
+O serviço fornece uma lista de IPs dos nós Tor exit em formato texto simples e uma lista de URLs maliciosas coletadas do honeypot:
 
 ```bash
 curl https://tor.protexion.cloud/tornodes-ip.txt
+curl https://tor.protexion.cloud/honeypot-urls.txt
 ```
 
 ### Integração em Scripts
@@ -92,6 +94,9 @@ curl https://tor.protexion.cloud/tornodes-ip.txt
 ```bash
 # Baixar apenas os IPs (sem comentários)
 curl -s https://tor.protexion.cloud/tornodes-ip.txt | grep -v "^#"
+
+# Baixar URLs recentes
+curl -s https://tor.protexion.cloud/honeypot-urls.txt | grep -v "^#"
 
 # Salvar em arquivo
 curl -s https://tor.protexion.cloud/tornodes-ip.txt > tor_nodes.txt
@@ -105,22 +110,25 @@ curl -s https://tor.protexion.cloud/tornodes-ip.txt > tor_nodes.txt
 **Exemplo:** [tor.protexion.cloud](https://tor.protexion.cloud)
 
 ### GET `/tornodes-ip.txt`
-**Descrição:** Lista completa de IPs dos nós Tor exit  
-**Formato:** Texto plano  
-**Cache:** 10 dias  
+**Descrição:** Lista completa de IPs dos nós Tor exit
+**Formato:** Texto plano
+**Cache:** 10 dias
+
+### GET `/honeypot-urls.txt`
+**Descrição:** URLs maliciosas registradas pelo honeypot nos últimos 30 dias
+**Formato:** Texto plano
+**Cache:** Sem cache
 **Exemplo:**
 ```
 ################################################################
-# DataN TOR NODE  (IPs only)                                   #
+# Honeypot URLs                                             #
 # Last updated: 2024-01-15 14:30:25 UTC                      #
-# Source: https://check.torproject.org/exit-addresses          #
+# Source: Honeypot cowrie                                    #
 ################################################################
 #
-# DstIP
-192.168.1.1
-10.0.0.1
-...
-# END 1234 entries
+# URL
+http://malicious.example
+# END 1 entries
 ```
 
 ### GET `/status`
@@ -221,6 +229,12 @@ foreach (array_slice($ips, 0, 5) as $ip) {
 | `CACHE_TTL_DAYS` | Dias para renovação do cache | 10 |
 | `PORT` | Porta do servidor | 8000 |
 | `HOST` | Host do servidor | 0.0.0.0 |
+| `DB_HOST` | Host do banco de dados | localhost |
+| `DB_PORT` | Porta do banco de dados | 3306 |
+| `DB_USER` | Usuário do banco de dados | root |
+| `DB_PASSWORD` | Senha do banco de dados | - |
+| `DB_NAME` | Nome do banco de dados | - |
+| `LEGIT_DOMAINS` | Lista de domínios permitidos (separados por vírgula) | - |
 
 ### Arquivos de Cache
 

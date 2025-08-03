@@ -10,11 +10,16 @@ from flask import Flask, render_template, Response, jsonify, request
 from flask_limiter import Limiter
 
 from services.tor_service import TorService
+from services.url_service import UrlService
 from utils.validators import validate_country_code
-from utils.formatters import format_exit_nodes_text, format_rss_feed
+from utils.formatters import (
+    format_exit_nodes_text,
+    format_rss_feed,
+    format_url_list_text,
+)
 
 
-def create_routes(app: Flask, tor_service: TorService, limiter: Limiter) -> None:
+def create_routes(app: Flask, tor_service: TorService, url_service: UrlService, limiter: Limiter) -> None:
     """Cria e registra todas as rotas da aplicação"""
     
     @app.route('/')
@@ -57,7 +62,20 @@ def create_routes(app: Flask, tor_service: TorService, limiter: Limiter) -> None
             logging.error(f"Erro ao buscar tornodes-ip.txt: {e}")
             error_content = format_exit_nodes_text([], None, str(e))
             return Response(error_content, mimetype='text/plain', status=500)
-    
+
+    @app.route('/honeypot-urls.txt')
+    @limiter.limit("30 per minute")
+    def honeypot_urls():
+        """Retorna URLs maliciosas do honeypot em formato texto"""
+        try:
+            urls, last_update = url_service.get_recent_urls()
+            content = format_url_list_text(urls, last_update)
+            return Response(content, mimetype='text/plain')
+        except Exception as e:
+            logging.error(f"Erro ao buscar honeypot-urls.txt: {e}")
+            error_content = format_url_list_text([], None, str(e))
+            return Response(error_content, mimetype='text/plain', status=500)
+
     @app.route('/status')
     @limiter.limit("60 per minute")
     def status():

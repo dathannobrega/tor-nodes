@@ -1,6 +1,4 @@
-"""
-Funções de formatação de dados
-"""
+"""Funções de formatação de dados"""
 
 from datetime import datetime
 from typing import List, Dict, Any, Optional
@@ -40,6 +38,36 @@ def format_exit_nodes_text(ips: List[str], last_update: Optional[datetime], erro
 """
     
     return header + '\n'.join(ips) + f'\n# END {len(ips)} entries\n'
+
+
+def format_url_list_text(urls: List[str], last_update: Optional[datetime], error: Optional[str] = None) -> str:
+    """Formata lista de URLs para formato texto"""
+
+    if error:
+        return f"""################################################################
+# Honeypot URLs - ERRO                                      #
+# Error occurred: {error}                                     #
+# Last attempt: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')} UTC            #
+################################################################
+#
+# Erro ao carregar dados das URLs
+# Tente novamente em alguns minutos
+#
+# END 0 entries
+"""
+
+    updated = last_update.strftime('%Y-%m-%d %H:%M:%S') if last_update else datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
+
+    header = f"""################################################################
+# Honeypot URLs                                             #
+# Last updated: {updated} UTC                        #
+# Source: Honeypot cowrie                                    #
+################################################################
+#
+# URL
+"""
+
+    return header + '\n'.join(urls) + f'\n# END {len(urls)} entries\n'
 
 
 def format_rss_feed(nodes: List[Dict[str, Any]], last_update: Optional[datetime]) -> str:
