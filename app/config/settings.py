@@ -1,9 +1,11 @@
-"""
-Configurações da aplicação
-"""
+"""Configurações da aplicação"""
 
 import os
-from typing import Dict, Any
+from typing import Dict, Any, List
+
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 class Config:
@@ -27,9 +29,17 @@ class Config:
     
     # Rate Limiting
     RATE_LIMIT_STORAGE: str = os.getenv('RATE_LIMIT_STORAGE', 'memory://')
-    
+
     # Paths
     CACHE_DIR: str = os.getenv('CACHE_DIR', '/tmp')
+
+    # Database
+    DB_HOST: str = os.getenv('DB_HOST', 'localhost')
+    DB_PORT: int = int(os.getenv('DB_PORT', 3306))
+    DB_USER: str = os.getenv('DB_USER', 'root')
+    DB_PASSWORD: str = os.getenv('DB_PASSWORD', '')
+    DB_NAME: str = os.getenv('DB_NAME', '')
+    LEGIT_DOMAINS: List[str] = [d.strip() for d in os.getenv('LEGIT_DOMAINS', '').split(',') if d.strip()]
     
     @classmethod
     def get_cache_paths(cls) -> Dict[str, str]:

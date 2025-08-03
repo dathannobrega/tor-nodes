@@ -12,6 +12,7 @@ from flask_limiter.util import get_remote_address
 from config.settings import Config
 from services.tor_service import TorService
 from services.cache_service import CacheService
+from services.url_service import UrlService
 from api.routes import create_routes
 from utils.logger import setup_logger
 
@@ -42,9 +43,11 @@ def create_app() -> Flask:
         cache_service=cache_service,
         request_timeout=app.config['REQUEST_TIMEOUT']
     )
-    
+
+    url_service = UrlService()
+
     # Registrar rotas
-    create_routes(app, tor_service, limiter)
+    create_routes(app, tor_service, url_service, limiter)
     
     # Inicializar cache
     try:
@@ -65,6 +68,7 @@ if __name__ == '__main__':
     print("📋 Endpoints disponíveis:")
     print("   - GET / (página inicial)")
     print("   - GET /tornodes-ip.txt (lista de IPs)")
+    print("   - GET /honeypot-urls.txt (lista de URLs)")
     print("   - GET /status (status do serviço)")
     print("   - GET /api/nodes (todos os nós detalhados)")
     print("   - GET /api/nodes/running (nós ativos)")
