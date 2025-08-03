@@ -59,10 +59,10 @@ def create_app() -> Flask:
     
     return app
 
+app = create_app()
 
 if __name__ == '__main__':
-    app = create_app()
-    
+
     print("🧅 Iniciando Protexion TorNodes Service...")
     print(f"🚀 Servidor iniciado em http://localhost:{Config.PORT}")
     print("📋 Endpoints disponíveis:")
