@@ -66,7 +66,7 @@ Um serviço web Python que fornece uma lista atualizada dos endereços IP dos n�
 
 ```bash
 # Build da imagem
-docker build -t tor-nodes .
+docker build -t tor-nodes -f docker/Dockerfile .
 
 # Executar container
 docker run -p 8000:8000 tor-nodes
