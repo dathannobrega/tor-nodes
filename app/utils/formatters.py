@@ -45,7 +45,7 @@ def format_url_list_text(urls: List[str], last_update: Optional[datetime], error
 
     if error:
         return f"""################################################################
-# Honeypot URLs - ERRO                                      #
+# Malicious URLs - ERRO                                       #
 # Error occurred: {error}                                     #
 # Last attempt: {datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')} UTC            #
 ################################################################
@@ -59,9 +59,8 @@ def format_url_list_text(urls: List[str], last_update: Optional[datetime], error
     updated = last_update.strftime('%Y-%m-%d %H:%M:%S') if last_update else datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
 
     header = f"""################################################################
-# Honeypot URLs                                             #
+# Malicious URLs                                               #
 # Last updated: {updated} UTC                        #
-# Source: Honeypot cowrie                                    #
 ################################################################
 #
 # URL
