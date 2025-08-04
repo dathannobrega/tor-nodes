@@ -5,64 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Primary Meta Tags -->
-    <title>Protexion TOR Nodes - Monitoramento de Nós Tor</title>
-    <meta name="title" content="Protexion TOR Nodes - Monitoramento de Nós Tor">
-    <meta name="description" content="Serviço profissional de monitoramento de nós Tor exit com API RESTful completa. Dados atualizados em tempo real, cache inteligente e endpoints para desenvolvedores.">
-    <meta name="keywords" content="tor nodes, tor exit nodes, tor monitoring, tor api, tor network, privacy, security, anonymity, tor project, exit relays, tor statistics, cybersecurity, network monitoring, tor data, api restful">
+    <title>CTI Protexion - Inteligência de Ameaças Cibernéticas</title>
+    <meta name="title" content="CTI Protexion - Inteligência de Ameaças Cibernéticas">
+    <meta name="description" content="Plataforma avançada de inteligência de ameaças com monitoramento em tempo real de nós Tor e URLs maliciosas. API RESTful, dados atualizados automaticamente e análise de honeypot.">
+    <meta name="keywords" content="CTI, cyber threat intelligence, tor nodes, malicious urls, honeypot, cybersecurity, threat detection, security monitoring">
     <meta name="author" content="Dathan Nobrega">
     <meta name="robots" content="index, follow">
-    <meta name="language" content="Portuguese">
-    <meta name="revisit-after" content="1 days">
-    <meta name="distribution" content="global">
-    <meta name="rating" content="general">
-
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://tor.protexion.cloud/">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://tor.protexion.cloud/">
-    <meta property="og:title" content="Protexion TOR Nodes - Monitoramento de Nós Tor">
-    <meta property="og:description" content="API RESTful completa para monitoramento de nós Tor. Dados atualizados automaticamente, cache inteligente e múltiplos endpoints para desenvolvedores.">
+    <meta property="og:title" content="CTI Protexion - Inteligência de Ameaças Cibernéticas">
+    <meta property="og:description" content="Plataforma avançada de inteligência de ameaças com monitoramento em tempo real de nós Tor e URLs maliciosas.">
     <meta property="og:image" content="https://tor.protexion.cloud/static/images/og-image.png">
-    <meta property="og:image:width" content="1014">
-    <meta property="og:image:height" content="756">
-    <meta property="og:image:alt" content="Protexion TorNodes - Interface de monitoramento de nós Tor">
-    <meta property="og:site_name" content="Protexion TorNodes">
-    <meta property="og:locale" content="pt_BR">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta property="twitter:domain" content="tor.protexion.cloud">
-    <meta property="twitter:url" content="https://tor.protexion.cloud/">
-    <meta name="twitter:title" content="Protexion TOR Nodes - Monitoramento de Nós Tor">
-    <meta name="twitter:description" content="API RESTful completa para monitoramento de nós Tor. Dados atualizados automaticamente, cache inteligente e múltiplos endpoints para desenvolvedores.">
-<meta name="twitter:image" content="https://tor.protexion.cloud/static/images/og-image.png">
-    <meta property="twitter:image:alt" content="Protexion TorNodes Dashboard">
-    <meta property="twitter:creator" content="@dathannobrega">
-    <meta property="twitter:site" content="@protexioncloud">
-
-    <!-- Additional Meta Tags -->
-    <meta name="theme-color" content="#00ff88">
-    <meta name="msapplication-TileColor" content="#00ff88">
-    <meta name="msapplication-config" content="/static/icons/browserconfig.xml">
+    <meta name="twitter:title" content="CTI Protexion - Inteligência de Ameaças Cibernéticas">
+    <meta name="twitter:description" content="Plataforma avançada de inteligência de ameaças com monitoramento em tempo real.">
+    <meta name="twitter:image" content="https://tor.protexion.cloud/static/images/og-image.png">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="/static/icons/favicon.svg">
-    <link rel="icon" type="image/png" sizes="16x16" href="/static/icons/favicon.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="/static/icons/favicon.svg">
-    <link rel="apple-touch-icon" sizes="180x180" href="/static/icons/favicon.svg">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
 
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="dns-prefetch" href="https://check.torproject.org">
-    <link rel="dns-prefetch" href="https://onionoo.torproject.org">
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <!-- Styles -->
+    <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
     <!-- Structured Data -->
@@ -70,8 +43,8 @@
     {
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "Protexion TorNodes",
-        "description": "Serviço profissional de monitoramento de nós Tor exit com API RESTful completa",
+        "name": "CTI Protexion",
+        "description": "Plataforma de inteligência de ameaças com monitoramento em tempo real de nós Tor e URLs maliciosas",
         "url": "https://tor.protexion.cloud",
         "applicationCategory": "SecurityApplication",
         "operatingSystem": "Web Browser",
@@ -96,93 +69,85 @@
             "url": "https://datan.com.br"
         },
         "featureList": [
-            "Monitoramento em tempo real de nós Tor",
+            "Monitoramento em tempo real de nós Tor e URLs maliciosas",
             "API RESTful completa",
             "Cache inteligente",
             "Dados por país",
             "Estatísticas detalhadas",
             "Feed RSS",
-            "Rate limiting por IP"
-        ],
-        "screenshot": "https://tor.protexion.cloud/static/images/screenshot.png"
-    }
-    </script>
-
-    <!-- Additional Structured Data for API -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "APIReference",
-        "name": "Protexion TorNodes API",
-        "description": "API RESTful para acesso aos dados de nós Tor exit",
-        "url": "https://tor.protexion.cloud/api/",
-        "documentation": "https://tor.protexion.cloud/#api",
-        "provider": {
-            "@type": "Organization",
-            "name": "DataN"
-        }
+            "Rate limiting por IP",
+            "Lista de URLs maliciosas"
+        ]
     }
     </script>
 </head>
 <body>
-    <!-- Background Effects - CORRIGIDO -->
+    <!-- Enhanced Background Effects -->
     <div class="bg-container">
         <div class="bg-grid"></div>
-        <div class="bg-gradient-1"></div>
-        <div class="bg-gradient-2"></div>
-        <div class="bg-gradient-3"></div>
-        <div class="bg-particles"></div>
+        <div class="bg-orb-1"></div>
+        <div class="bg-orb-2"></div>
+        <div class="bg-orb-3"></div>
     </div>
 
-    <!-- Navigation -->
+    <!-- Enhanced Navigation -->
     <nav class="navbar" role="navigation" aria-label="Menu principal">
-        <div class="nav-container">
-            <div class="nav-brand">
-                <span class="nav-icon" aria-hidden="true">🧅</span>
-                <span class="nav-title">Protexion TorNodes</span>
+        <div class="container">
+            <div class="nav-container">
+                <a href="#" class="nav-brand">
+                    <span class="nav-icon" aria-hidden="true">🛡️</span>
+                    <span class="nav-title">CTI Protexion</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="#about" class="nav-link">Sobre</a></li>
+                    <li><a href="#api" class="nav-link">API</a></li>
+                    <li><a href="#urls" class="nav-link">URLs Maliciosas</a></li>
+                    <li><a href="#stats" class="nav-link">Estatísticas</a></li>
+                    <li><a href="#contact" class="nav-link">Contato</a></li>
+                </ul>
+                <button class="nav-toggle" aria-label="Abrir menu de navegação" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
-            <div class="nav-links">
-                <a href="#about" class="nav-link">Sobre</a>
-                <a href="#api" class="nav-link">API</a>
-                <a href="#stats" class="nav-link">Estatísticas</a>
-                <a href="#contact" class="nav-link">Contato</a>
-            </div>
-            <button class="nav-toggle" aria-label="Abrir menu de navegação" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Enhanced Hero Section -->
     <section class="hero" role="banner">
         <div class="container">
             <div class="hero-content">
                 <div class="hero-badge">
-                    <span class="status-dot" aria-hidden="true"></span>
-                    <span>Sistema Online</span>
+                    <span class="status-indicator" aria-hidden="true"></span>
+                    <span>Sistema Online • Monitoramento 24/7</span>
                 </div>
 
                 <h1 class="hero-title">
-                    <span class="gradient-text">Protexion</span> TorNodes
+                    <span class="gradient-text">CTI Protexion</span>
                 </h1>
 
                 <p class="hero-subtitle">
-                    Monitoramento em tempo real de nós Tor exit com API RESTful completa
+                    Plataforma avançada de inteligência de ameaças cibernéticas com monitoramento em tempo real de nós Tor e URLs maliciosas capturadas por honeypot
                 </p>
 
                 <div class="hero-stats" role="region" aria-label="Estatísticas em tempo real">
                     <div class="stat-card">
-                        <div class="stat-number" data-target="{{ stats.ip_count or 0 }}" aria-label="Número de IPs exit">0</div>
-                        <div class="stat-label">IPs Exit</div>
+                        <div class="stat-number" data-target="{{ stats.ip_count or 0 }}" aria-label="Número de IPs exit">
+                            <span class="loading"></span>
+                        </div>
+                        <div class="stat-label">IPs Exit Nodes</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number" data-target="{{ stats.total_detailed_nodes or 0 }}" aria-label="Total de nós">0</div>
-                        <div class="stat-label">Total Nós</div>
+                        <div class="stat-number" data-target="{{ stats.total_detailed_nodes or 0 }}" aria-label="Total de nós">
+                            <span class="loading"></span>
+                        </div>
+                        <div class="stat-label">Total de Nós</div>
                     </div>
                     <div class="stat-card">
-                        <div class="stat-number" data-target="{{ stats.running_nodes or 0 }}" aria-label="Nós ativos">0</div>
+                        <div class="stat-number" data-target="{{ stats.running_nodes or 0 }}" aria-label="Nós ativos">
+                            <span class="loading"></span>
+                        </div>
                         <div class="stat-label">Nós Ativos</div>
                     </div>
                 </div>
@@ -190,14 +155,14 @@
                 <div class="hero-actions">
                     <a href="/tornodes-ip.txt" class="btn btn-primary" aria-label="Baixar lista de IPs dos nós Tor">
                         <span aria-hidden="true">📄</span>
-                        Baixar Lista IPs
+                        Lista IPs Tor
                     </a>
                     <a href="/honeypot-urls.txt" class="btn btn-primary" aria-label="Baixar lista de URLs maliciosas">
                         <span aria-hidden="true">🔗</span>
-                        Baixar Lista URLs
+                        URLs Maliciosas
                     </a>
                     <a href="/api/nodes" class="btn btn-secondary" aria-label="Acessar API de nós Tor">
-                        <span aria-hidden="true">🔗</span>
+                        <span aria-hidden="true">⚡</span>
                         Acessar API
                     </a>
                 </div>
@@ -205,13 +170,13 @@
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- Enhanced About Section -->
     <section id="about" class="section" role="main">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Sobre o Projeto</h2>
+                <h2 class="section-title">Inteligência de Ameaças Avançada</h2>
                 <p class="section-subtitle">
-                    Solução completa para monitoramento de nós Tor
+                    Solução completa para monitoramento, análise e detecção de ameaças cibernéticas em tempo real
                 </p>
             </div>
 
@@ -219,36 +184,53 @@
                 <article class="feature-card">
                     <div class="feature-icon" aria-hidden="true">🔄</div>
                     <h3>Atualização Automática</h3>
-                    <p>Cache renovado automaticamente a cada 12 horas com dados oficiais do Tor Project</p>
+                    <p>Cache inteligente renovado automaticamente a cada 12 horas com dados oficiais do Tor Project e feeds de inteligência de ameaças</p>
                 </article>
 
                 <article class="feature-card">
                     <div class="feature-icon" aria-hidden="true">⚡</div>
                     <h3>Performance Otimizada</h3>
-                    <p>Sistema de cache inteligente para respostas em milissegundos</p>
+                    <p>Sistema de cache distribuído e otimizado para respostas em milissegundos, com rate limiting inteligente por IP</p>
                 </article>
 
                 <article class="feature-card">
                     <div class="feature-icon" aria-hidden="true">🛡️</div>
-                    <h3>Fonte Confiável</h3>
-                    <p>Dados obtidos diretamente da API oficial do Tor Project</p>
+                    <h3>Fontes Confiáveis</h3>
+                    <p>Dados obtidos diretamente da API oficial do Tor Project e honeypots proprietários para máxima precisão</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">🎯</div>
+                    <h3>Honeypot Avançado</h3>
+                    <p>Sistema de honeypot proprietário que captura URLs maliciosas em tempo real para análise de ameaças</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">📊</div>
+                    <h3>Analytics Detalhado</h3>
+                    <p>Estatísticas completas por país, tipo de nó, status de atividade e análise temporal de ameaças</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon" aria-hidden="true">🔌</div>
+                    <h3>API RESTful</h3>
+                    <p>Interface completa para desenvolvedores com endpoints documentados, autenticação e múltiplos formatos de saída</p>
                 </article>
             </div>
         </div>
     </section>
 
-    <!-- API Section -->
+    <!-- Enhanced API Section -->
     <section id="api" class="section section-dark">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">API Endpoints</h2>
                 <p class="section-subtitle">
-                    Interface RESTful completa para acesso aos dados
+                    Interface RESTful completa para integração com sistemas de segurança e análise de ameaças
                 </p>
             </div>
 
             <div class="api-grid">
-                <!-- Core Endpoints -->
                 <div class="api-category">
                     <h3 class="api-category-title">
                         <span class="api-icon" aria-hidden="true">🎯</span>
@@ -257,23 +239,28 @@
                     <div class="api-endpoints">
                         <div class="api-endpoint">
                             <div class="api-method get">GET</div>
-                            <div class="api-path">/tornodes-ip.txt</div>
-                            <div class="api-desc">Lista de IPs em formato texto</div>
+                            <div class="api-endpoint-info">
+                                <div class="api-path">/tornodes-ip.txt</div>
+                                <div class="api-desc">Lista completa de IPs dos nós Tor em formato texto</div>
+                            </div>
                         </div>
                         <div class="api-endpoint">
                             <div class="api-method get">GET</div>
-                            <div class="api-path">/honeypot-urls.txt</div>
-                            <div class="api-desc">Lista de URLs maliciosas</div>
+                            <div class="api-endpoint-info">
+                                <div class="api-path">/honeypot-urls.txt</div>
+                                <div class="api-desc">URLs maliciosas capturadas pelo honeypot</div>
+                            </div>
                         </div>
                         <div class="api-endpoint">
                             <div class="api-method get">GET</div>
-                            <div class="api-path">/status</div>
-                            <div class="api-desc">Status do serviço e cache</div>
+                            <div class="api-endpoint-info">
+                                <div class="api-path">/status</div>
+                                <div class="api-desc">Status do serviço e informações de cache</div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Data Endpoints -->
                 <div class="api-category">
                     <h3 class="api-category-title">
                         <span class="api-icon" aria-hidden="true">📊</span>
@@ -282,105 +269,312 @@
                     <div class="api-endpoints">
                         <div class="api-endpoint">
                             <div class="api-method get">GET</div>
-                            <div class="api-path">/api/nodes</div>
-                            <div class="api-desc">Todos os nós com dados completos</div>
+                            <div class="api-endpoint-info">
+                                <div class="api-path">/api/nodes</div>
+                                <div class="api-desc">Todos os nós Tor com informações completas</div>
+                            </div>
                         </div>
                         <div class="api-endpoint">
                             <div class="api-method get">GET</div>
-                            <div class="api-path">/api/nodes/running</div>
-                            <div class="api-desc">Apenas nós ativos</div>
+                            <div class="api-endpoint-info">
+                                <div class="api-path">/api/nodes/running</div>
+                                <div class="api-desc">Apenas nós ativos e funcionais</div>
+                            </div>
+                        </div>
+                        <div class="api-endpoint">
+                            <div class="api-method get">GET</div>
+                            <div class="api-endpoint-info">
+                                <div class="api-path">/api/stats</div>
+                                <div class="api-desc">Estatísticas detalhadas e métricas</div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Filter Endpoints -->
                 <div class="api-category">
                     <h3 class="api-category-title">
                         <span class="api-icon" aria-hidden="true">🔍</span>
-                        Filtros e Feeds
+                        Feeds e Formatos
                     </h3>
                     <div class="api-endpoints">
                         <div class="api-endpoint">
                             <div class="api-method get">GET</div>
-                            <div class="api-path">/api/stats</div>
-                            <div class="api-desc">Estatísticas detalhadas</div>
-                        </div>
-                        <div class="api-endpoint">
-                            <div class="api-method get">GET</div>
-                            <div class="api-path">/api/feed/rss</div>
-                            <div class="api-desc">Feed RSS dos nós</div>
+                            <div class="api-endpoint-info">
+                                <div class="api-path">/api/feed/rss</div>
+                                <div class="api-desc">Feed RSS para monitoramento automático</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Code Examples -->
+            <!-- Enhanced Code Examples -->
             <div class="code-examples">
                 <div class="code-tabs" role="tablist" aria-label="Exemplos de código">
-                    <button class="code-tab active" data-lang="curl" role="tab" aria-selected="true" aria-controls="curl-panel">cURL</button>
-                    <button class="code-tab" data-lang="python" role="tab" aria-selected="false" aria-controls="python-panel">Python</button>
-                    <button class="code-tab" data-lang="javascript" role="tab" aria-selected="false" aria-controls="javascript-panel">JavaScript</button>
-                    <button class="code-tab" data-lang="php" role="tab" aria-selected="false" aria-controls="php-panel">PHP</button>
+                    <button class="code-tab active" data-lang="curl" role="tab" aria-selected="true">cURL</button>
+                    <button class="code-tab" data-lang="python" role="tab" aria-selected="false">Python</button>
+                    <button class="code-tab" data-lang="javascript" role="tab" aria-selected="false">JavaScript</button>
+                    <button class="code-tab" data-lang="php" role="tab" aria-selected="false">PHP</button>
                 </div>
 
                 <div class="code-content">
-                    <div class="code-block active" data-lang="curl" role="tabpanel" id="curl-panel" aria-labelledby="curl-tab">
-                        <pre><code># Buscar lista de IPs
-curl https://tor.protexion.cloud/tornodes-ip.txt
+                    <div class="code-block active" data-lang="curl">
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                        <pre><code># Buscar lista de IPs dos nós Tor
+curl -H "Accept: text/plain" \
+     https://tor.protexion.cloud/tornodes-ip.txt
 
-# Buscar nós ativos
-curl https://tor.protexion.cloud/api/nodes/running
+# Buscar nós ativos com informações detalhadas
+curl -H "Accept: application/json" \
+     https://tor.protexion.cloud/api/nodes/running
+
+# Verificar status do serviço
+curl https://tor.protexion.cloud/status</code></pre>
                     </div>
 
-                    <div class="code-block" data-lang="python" role="tabpanel" id="python-panel" aria-labelledby="python-tab">
+                    <div class="code-block" data-lang="python">
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
                         <pre><code>import requests
+import json
 
-# Buscar todos os nós
-response = requests.get('https://tor.protexion.cloud/api/nodes')
-nodes = response.json()
+# Configurar headers
+headers = {
+    'User-Agent': 'CTI-Client/1.0',
+    'Accept': 'application/json'
+}
 
-# Filtrar apenas nós exit ativos
-exit_nodes = [node for node in nodes['nodes']
-              if node['exit_node'] and node['running']]
+# Buscar todos os nós Tor
+response = requests.get(
+    'https://tor.protexion.cloud/api/nodes',
+    headers=headers
+)
 
-print(f"Nós exit ativos: {len(exit_nodes)}")</code></pre>
+if response.status_code == 200:
+    data = response.json()
+    nodes = data['nodes']
+
+    # Filtrar apenas nós exit ativos
+    exit_nodes = [
+        node for node in nodes
+        if node.get('exit_node') and node.get('running')
+    ]
+
+    print(f"Nós exit ativos: {len(exit_nodes)}")
+
+    # Buscar URLs maliciosas
+    urls_response = requests.get(
+        'https://tor.protexion.cloud/honeypot-urls.txt',
+        headers={'Accept': 'text/plain'}
+    )
+
+    if urls_response.status_code == 200:
+        malicious_urls = urls_response.text.strip().split('\n')
+        print(f"URLs maliciosas detectadas: {len(malicious_urls)}")
+else:
+    print(f"Erro: {response.status_code}")</code></pre>
                     </div>
 
-                    <div class="code-block" data-lang="javascript" role="tabpanel" id="javascript-panel" aria-labelledby="javascript-tab">
-                        <pre><code>// Buscar estatísticas
-fetch('https://tor.protexion.cloud/api/stats')
-  .then(response => response.json())
-  .then(data => {
-    console.log('Total de nós:', data.statistics.total_nodes);
-    console.log('Nós ativos:', data.statistics.running_nodes);
-  });</code></pre>
+                    <div class="code-block" data-lang="javascript">
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
+                        <pre><code>// Classe para interagir com a API CTI Protexion
+class CTIProtexion {
+    constructor(baseUrl = 'https://tor.protexion.cloud') {
+        this.baseUrl = baseUrl;
+        this.headers = {
+            'Accept': 'application/json',
+            'User-Agent': 'CTI-JS-Client/1.0'
+        };
+    }
+
+    async getStats() {
+        try {
+            const response = await fetch(`${this.baseUrl}/api/stats`, {
+                headers: this.headers
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+
+            const data = await response.json();
+            return data.statistics;
+        } catch (error) {
+            console.error('Erro ao buscar estatísticas:', error);
+            return null;
+        }
+    }
+
+    async getRunningNodes() {
+        try {
+            const response = await fetch(`${this.baseUrl}/api/nodes/running`, {
+                headers: this.headers
+            });
+
+            const data = await response.json();
+            return data.nodes;
+        } catch (error) {
+            console.error('Erro ao buscar nós ativos:', error);
+            return [];
+        }
+    }
+
+    async getMaliciousUrls() {
+        try {
+            const response = await fetch(`${this.baseUrl}/honeypot-urls.txt`, {
+                headers: { 'Accept': 'text/plain' }
+            });
+
+            const text = await response.text();
+            return text.split('\n').filter(url => url && !url.startsWith('#'));
+        } catch (error) {
+            console.error('Erro ao buscar URLs maliciosas:', error);
+            return [];
+        }
+    }
+}
+
+// Exemplo de uso
+const cti = new CTIProtexion();
+
+cti.getStats().then(stats => {
+    if (stats) {
+        console.log('Estatísticas CTI:', stats);
+    }
+});
+
+cti.getRunningNodes().then(nodes => {
+    console.log(`Nós Tor ativos: ${nodes.length}`);
+});
+
+cti.getMaliciousUrls().then(urls => {
+    console.log(`URLs maliciosas: ${urls.length}`);
+});</code></pre>
                     </div>
 
-                    <div class="code-block" data-lang="php" role="tabpanel" id="php-panel" aria-labelledby="php-tab">
+                    <div class="code-block" data-lang="php">
+                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
                         <pre><code>&lt;?php
-$url = 'https://tor.protexion.cloud/tornodes-ip.txt';
+class CTIProtexion {
+    private $baseUrl;
+    private $headers;
 
-$response = @file_get_contents($url);
-if ($response === false) {
-    die("Erro ao buscar o arquivo.");
+    public function __construct($baseUrl = 'https://tor.protexion.cloud') {
+        $this->baseUrl = $baseUrl;
+        $this->headers = [
+            'Accept: application/json',
+            'User-Agent: CTI-PHP-Client/1.0'
+        ];
+    }
+
+    public function getTorNodes() {
+        $url = $this->baseUrl . '/tornodes-ip.txt';
+
+        $context = stream_context_create([
+            'http' => [
+                'method' => 'GET',
+                'header' => implode("\r\n", [
+                    'Accept: text/plain',
+                    'User-Agent: CTI-PHP-Client/1.0'
+                ])
+            ]
+        ]);
+
+        $response = @file_get_contents($url, false, $context);
+
+        if ($response === false) {
+            throw new Exception("Erro ao buscar nós Tor");
+        }
+
+        $lines = preg_split("/\r\n|\n|\r/", $response);
+        $ips = [];
+
+        foreach ($lines as $line) {
+            $line = trim($line);
+
+            // Pular comentários e linhas vazias
+            if ($line === '' || strpos($line, '#') === 0) {
+                continue;
+            }
+
+            // Validar IP
+            if (filter_var($line, FILTER_VALIDATE_IP)) {
+                $ips[] = $line;
+            }
+        }
+
+        return $ips;
+    }
+
+    public function getApiData($endpoint) {
+        $url = $this->baseUrl . $endpoint;
+
+        $context = stream_context_create([
+            'http' => [
+                'method' => 'GET',
+                'header' => implode("\r\n", $this->headers)
+            ]
+        ]);
+
+        $response = @file_get_contents($url, false, $context);
+
+        if ($response === false) {
+            throw new Exception("Erro ao buscar dados da API");
+        }
+
+        return json_decode($response, true);
+    }
+
+    public function getMaliciousUrls() {
+        $url = $this->baseUrl . '/honeypot-urls.txt';
+
+        $context = stream_context_create([
+            'http' => [
+                'method' => 'GET',
+                'header' => 'Accept: text/plain'
+            ]
+        ]);
+
+        $response = @file_get_contents($url, false, $context);
+
+        if ($response === false) {
+            throw new Exception("Erro ao buscar URLs maliciosas");
+        }
+
+        $lines = preg_split("/\r\n|\n|\r/", $response);
+        $urls = [];
+
+        foreach ($lines as $line) {
+            $line = trim($line);
+            if ($line && !str_starts_with($line, '#')) {
+                $urls[] = $line;
+            }
+        }
+
+        return $urls;
+    }
 }
 
-$lines = preg_split("/\r\n|\n|\r/", $response);
+// Exemplo de uso
+try {
+    $cti = new CTIProtexion();
 
-$ips = [];
-foreach ($lines as $line) {
-    $line = trim($line);
-    // pula comentários e linhas em branco
-    if ($line === '' || strpos($line, '#') === 0) {
-        continue;
+    // Buscar nós Tor
+    $torNodes = $cti->getTorNodes();
+    echo "Total de nós Tor: " . count($torNodes) . "\n";
+
+    // Buscar estatísticas
+    $stats = $cti->getApiData('/api/stats');
+    if ($stats && $stats['status'] === 'success') {
+        echo "Nós ativos: " . $stats['statistics']['running_nodes'] . "\n";
     }
-    // opcional: valida sintaxe de IP
-    if (filter_var($line, FILTER_VALIDATE_IP)) {
-        $ips[] = $line;
-    }
+
+    // Buscar URLs maliciosas
+    $maliciousUrls = $cti->getMaliciousUrls();
+    echo "URLs maliciosas detectadas: " . count($maliciousUrls) . "\n";
+
+} catch (Exception $e) {
+    echo "Erro: " . $e->getMessage() . "\n";
 }
-$total = count($ips);
-echo "Total de nós Tor: {$total}\n";
 ?&gt;</code></pre>
                     </div>
                 </div>
@@ -388,23 +582,51 @@ echo "Total de nós Tor: {$total}\n";
         </div>
     </section>
 
-    <!-- Stats Section -->
-    <section id="stats" class="section">
+    <!-- Enhanced URL List Section -->
+    <section id="urls" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">URLs Maliciosas Detectadas</h2>
+                <p class="section-subtitle">
+                    Lista dinâmica de URLs capturadas pelo nosso sistema de honeypot para análise de ameaças cibernéticas
+                </p>
+            </div>
+
+            <div class="url-section">
+                <div class="url-list-header">
+                    <h3>Últimas Detecções</h3>
+                    <span class="url-count">Carregando...</span>
+                </div>
+                <ul id="urlList" class="url-list" aria-label="Lista de URLs maliciosas">
+                    <li><span class="loading"></span> Carregando URLs maliciosas...</li>
+                </ul>
+                <div class="url-actions">
+                    <a href="/honeypot-urls.txt" class="btn btn-secondary">
+                        <span aria-hidden="true">📥</span>
+                        Baixar Lista Completa
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Stats Section -->
+    <section id="stats" class="section section-dark">
         <div class="container">
             <div class="section-header">
                 <h2 class="section-title">Estatísticas em Tempo Real</h2>
                 <p class="section-subtitle">
-                    Monitoramento 24/7 da rede Tor
+                    Monitoramento 24/7 da rede Tor e análise contínua de ameaças cibernéticas
                 </p>
             </div>
 
             <div class="stats-dashboard">
-                <div class="stats-row">
+                <div class="stats-grid">
                     <div class="stat-box">
                         <div class="stat-icon" aria-hidden="true">🌐</div>
                         <div class="stat-info">
                             <div class="stat-value">24/7</div>
-                            <div class="stat-title">Monitoramento</div>
+                            <div class="stat-title">Monitoramento Contínuo</div>
                         </div>
                     </div>
 
@@ -412,7 +634,7 @@ echo "Total de nós Tor: {$total}\n";
                         <div class="stat-icon" aria-hidden="true">⏱️</div>
                         <div class="stat-info">
                             <div class="stat-value">12h</div>
-                            <div class="stat-title">Cache TTL</div>
+                            <div class="stat-title">Intervalo de Cache</div>
                         </div>
                     </div>
 
@@ -420,7 +642,7 @@ echo "Total de nós Tor: {$total}\n";
                         <div class="stat-icon" aria-hidden="true">🚀</div>
                         <div class="stat-info">
                             <div class="stat-value">99.9%</div>
-                            <div class="stat-title">Uptime</div>
+                            <div class="stat-title">Disponibilidade</div>
                         </div>
                     </div>
 
@@ -428,7 +650,7 @@ echo "Total de nós Tor: {$total}\n";
                         <div class="stat-icon" aria-hidden="true">🔗</div>
                         <div class="stat-info">
                             <div class="stat-value">REST</div>
-                            <div class="stat-title">API</div>
+                            <div class="stat-title">API Completa</div>
                         </div>
                     </div>
                 </div>
@@ -437,28 +659,36 @@ echo "Total de nós Tor: {$total}\n";
                     <h3>Especificações Técnicas</h3>
                     <div class="tech-grid">
                         <div class="tech-item">
-                            <span class="tech-label">Linguagem:</span>
-                            <span class="tech-value">Python 3.x</span>
+                            <span class="tech-label">Linguagem Backend:</span>
+                            <span class="tech-value">Python 3.11+</span>
                         </div>
                         <div class="tech-item">
-                            <span class="tech-label">Framework:</span>
-                            <span class="tech-value">Flask</span>
+                            <span class="tech-label">Framework Web:</span>
+                            <span class="tech-value">Flask + Gunicorn</span>
                         </div>
                         <div class="tech-item">
-                            <span class="tech-label">Fonte:</span>
-                            <span class="tech-value">Tor Project Official</span>
+                            <span class="tech-label">Fonte de Dados:</span>
+                            <span class="tech-value">Tor Project Official API</span>
                         </div>
                         <div class="tech-item">
-                            <span class="tech-label">Rate Limit:</span>
-                            <span class="tech-value">Por IP</span>
+                            <span class="tech-label">Rate Limiting:</span>
+                            <span class="tech-value">Por IP com Redis</span>
                         </div>
                         <div class="tech-item">
-                            <span class="tech-label">Cache:</span>
-                            <span class="tech-value">Inteligente</span>
+                            <span class="tech-label">Sistema de Cache:</span>
+                            <span class="tech-value">Redis + Memória</span>
                         </div>
                         <div class="tech-item">
-                            <span class="tech-label">Formato:</span>
-                            <span class="tech-value">JSON/TXT/RSS</span>
+                            <span class="tech-label">Formatos de Saída:</span>
+                            <span class="tech-value">JSON, TXT, RSS</span>
+                        </div>
+                        <div class="tech-item">
+                            <span class="tech-label">Honeypot Engine:</span>
+                            <span class="tech-value">Proprietário</span>
+                        </div>
+                        <div class="tech-item">
+                            <span class="tech-label">Infraestrutura:</span>
+                            <span class="tech-value">Cloud Native</span>
                         </div>
                     </div>
                 </div>
@@ -466,20 +696,20 @@ echo "Total de nós Tor: {$total}\n";
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section section-dark">
+    <!-- Enhanced Contact Section -->
+    <section id="contact" class="section">
         <div class="container">
             <div class="section-header">
-                <h2 class="section-title">Desenvolvedor</h2>
+                <h2 class="section-title">Desenvolvedor & Suporte</h2>
                 <p class="section-subtitle">
-                    Especialista em Segurança da Informação
+                    Especialista em Segurança Cibernética e Inteligência de Ameaças
                 </p>
             </div>
 
             <div class="contact-content">
                 <div class="contact-info">
                     <h3>Dathan Nobrega</h3>
-                    <p>Especialista em segurança cibernética e infraestrutura de rede. Criador do Protexion TorNodes para auxiliar profissionais de TI e pesquisadores de segurança.</p>
+                    <p>Especialista em segurança cibernética, análise de malware e infraestrutura de rede. Criador do CTI Protexion para auxiliar profissionais de segurança, pesquisadores e organizações na detecção e análise de ameaças.</p>
 
                     <div class="contact-links">
                         <a href="https://github.com/dathannobrega" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="GitHub do Dathan Nobrega">
@@ -498,9 +728,10 @@ echo "Total de nós Tor: {$total}\n";
                 </div>
 
                 <div class="contact-cta">
-                    <h4>Precisa de Ajuda?</h4>
-                    <p>Entre em contato para suporte técnico, integração personalizada ou consultoria em segurança.</p>
+                    <h4>Precisa de Suporte?</h4>
+                    <p>Entre em contato para suporte técnico, integração personalizada, consultoria em segurança ou desenvolvimento de soluções CTI customizadas.</p>
                     <a href="mailto:dathan.nobrega@datan.com.br" class="btn btn-primary">
+                        <span aria-hidden="true">📞</span>
                         Entrar em Contato
                     </a>
                 </div>
@@ -508,13 +739,13 @@ echo "Total de nós Tor: {$total}\n";
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Enhanced Footer -->
     <footer class="footer" role="contentinfo">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-brand">
-                    <span class="footer-logo" aria-hidden="true">🧅</span>
-                    <span class="footer-title">Protexion TorNodes</span>
+                    <span class="footer-logo" aria-hidden="true">🛡️</span>
+                    <span class="footer-title">CTI Protexion</span>
                 </div>
 
                 <div class="footer-links">
@@ -522,16 +753,19 @@ echo "Total de nós Tor: {$total}\n";
                     <span aria-hidden="true">•</span>
                     <a href="/api/feed/rss">RSS Feed</a>
                     <span aria-hidden="true">•</span>
-                    <a href="/status">Status</a>
+                    <a href="/status">Status API</a>
+                    <span aria-hidden="true">•</span>
+                    <a href="https://datan.com.br" target="_blank" rel="noopener noreferrer">DataN</a>
                 </div>
 
                 <div class="footer-copy">
-                    © 2025 DataN. Serviço fornecido para fins educacionais e de pesquisa.
+                    © 2025 DataN. Plataforma CTI fornecida para fins educacionais, pesquisa e segurança cibernética.
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- JavaScript -->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
