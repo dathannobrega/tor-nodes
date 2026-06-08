@@ -4,768 +4,463 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Primary Meta Tags -->
-    <title>CTI Protexion - Inteligência de Ameaças Cibernéticas</title>
-    <meta name="title" content="CTI Protexion - Inteligência de Ameaças Cibernéticas">
-    <meta name="description" content="Plataforma avançada de inteligência de ameaças com monitoramento em tempo real de nós Tor e URLs maliciosas. API RESTful, dados atualizados automaticamente e análise de honeypot.">
-    <meta name="keywords" content="CTI, cyber threat intelligence, tor nodes, malicious urls, honeypot, cybersecurity, threat detection, security monitoring">
-    <meta name="author" content="Dathan Nobrega">
+    <title>CTI Protexion by Segark — Nós Tor e URLs Maliciosas</title>
+    <meta name="title" content="CTI Protexion by Segark — Nós Tor e URLs Maliciosas">
+    <meta name="description" content="Feeds em tempo real de nós Tor exit e URLs maliciosas capturadas por honeypot, com API RESTful. Inteligência de ameaças cibernéticas by Segark.">
+    <meta name="keywords" content="CTI, cyber threat intelligence, tor exit nodes, lista de nós tor, URLs maliciosas, honeypot, cowrie, cybersecurity, Segark">
+    <meta name="author" content="Segark">
     <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#0B0F14">
+    <link rel="canonical" href="https://cti.segark.com/">
 
-    <!-- Open Graph / Facebook -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://tor.protexion.cloud/">
-    <meta property="og:title" content="CTI Protexion - Inteligência de Ameaças Cibernéticas">
-    <meta property="og:description" content="Plataforma avançada de inteligência de ameaças com monitoramento em tempo real de nós Tor e URLs maliciosas.">
-    <meta property="og:image" content="https://tor.protexion.cloud/static/images/og-image.png">
+    <meta property="og:site_name" content="CTI Protexion by Segark">
+    <meta property="og:locale" content="pt_BR">
+    <meta property="og:url" content="https://cti.segark.com/">
+    <meta property="og:title" content="CTI Protexion by Segark — Nós Tor e URLs Maliciosas">
+    <meta property="og:description" content="Feeds em tempo real de nós Tor exit e URLs maliciosas de honeypot, com API RESTful. Inteligência de ameaças cibernéticas by Segark.">
+    <meta property="og:image" content="https://cti.segark.com/static/images/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="CTI Protexion by Segark — inteligência de ameaças sobre a rede Tor">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="CTI Protexion - Inteligência de Ameaças Cibernéticas">
-    <meta name="twitter:description" content="Plataforma avançada de inteligência de ameaças com monitoramento em tempo real.">
-    <meta name="twitter:image" content="https://tor.protexion.cloud/static/images/og-image.png">
+    <meta name="twitter:title" content="CTI Protexion by Segark — Nós Tor e URLs Maliciosas">
+    <meta name="twitter:description" content="Feeds em tempo real de nós Tor exit e URLs maliciosas de honeypot, com API RESTful. By Segark.">
+    <meta name="twitter:image" content="https://cti.segark.com/static/images/og-image.png">
+    <meta name="twitter:image:alt" content="CTI Protexion by Segark">
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛡️</text></svg>">
+    <!-- Favicon (SVG limpo, sem emoji) -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230B0F14'/%3E%3Cpath d='M16 5l8 3v6c0 5-3.4 8.6-8 10-4.6-1.4-8-5-8-10V8l8-3z' fill='none' stroke='%232DD4BF' stroke-width='2'/%3E%3Cpath d='M12 16l3 3 5-6' fill='none' stroke='%232DD4BF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fontes self-hosted (sem dependência do Google Fonts) -->
+    <link rel="preload" href="{{ url_for('static', filename='fonts/inter-latin.woff2') }}" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="{{ url_for('static', filename='fonts/jetbrainsmono-latin.woff2') }}" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fonts.css') }}">
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
-    <!-- CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
-    <!-- Structured Data -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "WebApplication",
-        "name": "CTI Protexion",
-        "description": "Plataforma de inteligência de ameaças com monitoramento em tempo real de nós Tor e URLs maliciosas",
-        "url": "https://tor.protexion.cloud",
+        "name": "CTI Protexion by Segark",
+        "description": "Plataforma de inteligência de ameaças com monitoramento em tempo real de nós Tor exit e URLs maliciosas.",
+        "url": "https://cti.segark.com",
+        "inLanguage": "pt-BR",
         "applicationCategory": "SecurityApplication",
         "operatingSystem": "Web Browser",
-        "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-        },
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "provider": { "@type": "Organization", "name": "Segark", "url": "https://cti.segark.com" },
         "creator": {
             "@type": "Person",
             "name": "Dathan Nobrega",
             "jobTitle": "Especialista em Segurança da Informação",
             "url": "https://www.linkedin.com/in/dathannobrega/",
-            "sameAs": [
-                "https://github.com/dathannobrega",
-                "https://www.linkedin.com/in/dathannobrega/"
-            ]
-        },
-        "provider": {
-            "@type": "Organization",
-            "name": "DataN",
-            "url": "https://datan.com.br"
+            "sameAs": [ "https://github.com/dathannobrega", "https://www.linkedin.com/in/dathannobrega/" ]
         },
         "featureList": [
-            "Monitoramento em tempo real de nós Tor e URLs maliciosas",
-            "API RESTful completa",
-            "Cache inteligente",
-            "Dados por país",
+            "Monitoramento em tempo real de nós Tor exit",
+            "URLs maliciosas capturadas por honeypot",
+            "API RESTful",
+            "Cache com TTL",
             "Estatísticas detalhadas",
             "Feed RSS",
-            "Rate limiting por IP",
-            "Lista de URLs maliciosas"
+            "Rate limiting por IP"
         ]
     }
     </script>
 </head>
 <body>
-    <!-- Enhanced Background Effects -->
-    <div class="bg-container">
-        <div class="bg-grid"></div>
-        <div class="bg-orb-1"></div>
-        <div class="bg-orb-2"></div>
-        <div class="bg-orb-3"></div>
-    </div>
+    <div class="bg" aria-hidden="true"></div>
 
-    <!-- Enhanced Navigation -->
-    <nav class="navbar" role="navigation" aria-label="Menu principal">
+    <!-- Sprite de ícones (line icons, sem emoji) -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+        <defs>
+            <g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6l7-3z"/><path d="M9.2 12l2 2 3.6-4"/></symbol>
+                <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></symbol>
+                <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></symbol>
+                <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="1.5" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22.5"/><line x1="1.5" y1="12" x2="5" y2="12"/><line x1="19" y1="12" x2="22.5" y2="12"/></symbol>
+                <symbol id="i-activity" viewBox="0 0 24 24"><path d="M3 12h4l3 8 4-16 3 8h4"/></symbol>
+                <symbol id="i-terminal" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9l3 3-3 3"/><line x1="13" y1="15" x2="17" y2="15"/></symbol>
+                <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c2.7 2.6 2.7 15 0 18-2.7-3-2.7-15.4 0-18z"/></symbol>
+                <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+                <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 11v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></symbol>
+                <symbol id="i-link" viewBox="0 0 24 24"><path d="M10.5 13.5a4 4 0 0 0 5.7 0l2.8-2.8a4 4 0 1 0-5.7-5.7l-1.4 1.4"/><path d="M13.5 10.5a4 4 0 0 0-5.7 0l-2.8 2.8a4 4 0 1 0 5.7 5.7l1.4-1.4"/></symbol>
+                <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12"/><path d="M7 11l5 5 5-5"/><path d="M5 21h14"/></symbol>
+                <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+                <symbol id="i-github" viewBox="0 0 24 24"><path d="M9 19c-4.7 1.4-4.7-2.4-6.6-2.9M16 22v-3.6a3.1 3.1 0 0 0-.9-2.4c3-.3 6.1-1.5 6.1-6.6a5.1 5.1 0 0 0-1.4-3.5 4.8 4.8 0 0 0-.1-3.6s-1.1-.3-3.7 1.4a12.5 12.5 0 0 0-6.6 0C6.2 1.4 5.1 1.7 5.1 1.7a4.8 4.8 0 0 0-.1 3.6 5.1 5.1 0 0 0-1.4 3.5c0 5.1 3.1 6.3 6.1 6.6a3.1 3.1 0 0 0-.9 2.4V22"/></symbol>
+                <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></symbol>
+                <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></symbol>
+                <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3v4a1 1 0 0 0 1 1h4"/><path d="M5 3h9l5 5v11a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="13" y2="17"/></symbol>
+                <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
+                <symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></symbol>
+                <symbol id="i-inbox" viewBox="0 0 24 24"><path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5 6L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3-6a2 2 0 0 0-1.8-1H6.8A2 2 0 0 0 5 6z"/></symbol>
+                <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+                <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3l9 5-9 5-9-5 9-5z"/><path d="M3 13l9 5 9-5"/></symbol>
+            </g>
+        </defs>
+    </svg>
+
+    <!-- Topbar -->
+    <header class="topbar" id="topbar">
+        <div class="topbar__accent"></div>
         <div class="container">
-            <div class="nav-container">
-                <a href="#" class="nav-brand">
-                    <span class="nav-icon" aria-hidden="true">🛡️</span>
-                    <span class="nav-title">CTI Protexion</span>
+            <div class="topbar__inner">
+                <a href="#top" class="brand" aria-label="CTI Protexion by Segark">
+                    <span class="brand__mark"><svg class="icon"><use href="#i-shield"/></svg></span>
+                    <span class="brand__text">
+                        <span class="brand__name">CTI Protexion</span>
+                        <span class="brand__by">By Segark</span>
+                    </span>
                 </a>
-                <ul class="nav-links">
-                    <li><a href="#about" class="nav-link">Sobre</a></li>
-                    <li><a href="#api" class="nav-link">API</a></li>
-                    <li><a href="#urls" class="nav-link">URLs Maliciosas</a></li>
-                    <li><a href="#stats" class="nav-link">Estatísticas</a></li>
-                    <li><a href="#contact" class="nav-link">Contato</a></li>
-                </ul>
-                <button class="nav-toggle" aria-label="Abrir menu de navegação" aria-expanded="false">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+
+                <nav class="nav" id="nav" aria-label="Navegação principal">
+                    <ul class="nav__links">
+                        <li><a href="#capacidades" class="nav__link">Capacidades</a></li>
+                        <li><a href="#api" class="nav__link">API</a></li>
+                        <li><a href="#urls" class="nav__link">URLs</a></li>
+                        <li><a href="#operacao" class="nav__link">Operação</a></li>
+                        <li><a href="#contato" class="nav__link">Contato</a></li>
+                    </ul>
+                    <span class="status-pill" id="statusPill">
+                        <span class="dot"></span> <span id="statusText">Operacional</span>
+                    </span>
+                </nav>
+
+                <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav">
+                    <span></span><span></span><span></span>
                 </button>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- Enhanced Hero Section -->
-    <section class="hero" role="banner">
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <span class="status-indicator" aria-hidden="true"></span>
-                    <span>Sistema Online • Monitoramento 24/7</span>
+    <main id="top">
+        <!-- Hero -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero__grid">
+                    <div>
+                        <span class="eyebrow hero__eyebrow">Cyber Threat Intelligence</span>
+                        <h1 class="hero__title">Inteligência de ameaças <span class="hl">em tempo real</span> sobre a rede Tor.</h1>
+                        <p class="hero__sub">Monitoramento contínuo de nós Tor exit e URLs maliciosas capturadas por honeypot, entregues por uma API RESTful pronta para integrar ao seu pipeline de segurança.</p>
+                        <div class="hero__actions">
+                            <a href="/tornodes-ip.txt" class="btn btn--primary"><svg class="icon"><use href="#i-file"/></svg> Lista de IPs Tor</a>
+                            <a href="/honeypot-urls.txt" class="btn btn--ghost"><svg class="icon"><use href="#i-link"/></svg> URLs do Honeypot</a>
+                            <a href="#api" class="btn btn--ghost"><svg class="icon"><use href="#i-terminal"/></svg> Documentação</a>
+                        </div>
+                    </div>
+
+                    <!-- Painel monitor (assinatura) -->
+                    <div class="monitor reveal" role="region" aria-label="Métricas em tempo real">
+                        <div class="monitor__bar">
+                            <span class="monitor__dots"><i></i><i></i><i></i></span>
+                            <span class="monitor__file">live_monitor — cti.segark.com</span>
+                            <span class="monitor__live"><span class="dot"></span> LIVE</span>
+                        </div>
+                        <div class="monitor__body">
+                            <div class="metric-row">
+                                <span class="metric-row__label"><svg class="icon"><use href="#i-globe"/></svg> IPs Exit Nodes</span>
+                                <span class="metric-row__value" data-count="{{ stats.ip_count or 0 }}">0</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-row__label"><svg class="icon"><use href="#i-layers"/></svg> Nós monitorados</span>
+                                <span class="metric-row__value" data-count="{{ stats.total_detailed_nodes or 0 }}">0</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-row__label"><svg class="icon"><use href="#i-activity"/></svg> Nós ativos</span>
+                                <span class="metric-row__value" data-count="{{ stats.running_nodes or 0 }}">0</span>
+                            </div>
+                            <div class="monitor__cmd"><span class="prompt">$</span> curl https://cti.segark.com/tornodes-ip.txt<span class="cursor"></span></div>
+                        </div>
+                    </div>
                 </div>
+            </div>
+        </section>
 
-                <h1 class="hero-title">
-                    <span class="gradient-text">CTI Protexion</span>
-                </h1>
-
-                <p class="hero-subtitle">
-                    Plataforma avançada de inteligência de ameaças cibernéticas com monitoramento em tempo real de nós Tor e URLs maliciosas capturadas por honeypot
-                </p>
-
-                <div class="hero-stats" role="region" aria-label="Estatísticas em tempo real">
-                    <div class="stat-card">
-                        <div class="stat-number" data-target="{{ stats.ip_count or 0 }}" aria-label="Número de IPs exit">
-                            <span class="loading"></span>
-                        </div>
-                        <div class="stat-label">IPs Exit Nodes</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" data-target="{{ stats.total_detailed_nodes or 0 }}" aria-label="Total de nós">
-                            <span class="loading"></span>
-                        </div>
-                        <div class="stat-label">Total de Nós</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number" data-target="{{ stats.running_nodes or 0 }}" aria-label="Nós ativos">
-                            <span class="loading"></span>
-                        </div>
-                        <div class="stat-label">Nós Ativos</div>
-                    </div>
-                </div>
-
-                <div class="hero-actions">
-                    <a href="/tornodes-ip.txt" class="btn btn-primary" aria-label="Baixar lista de IPs dos nós Tor">
-                        <span aria-hidden="true">📄</span>
-                        Lista IPs Tor
-                    </a>
-                    <a href="/honeypot-urls.txt" class="btn btn-primary" aria-label="Baixar lista de URLs maliciosas">
-                        <span aria-hidden="true">🔗</span>
-                        URLs Maliciosas
-                    </a>
-                    <a href="/api/nodes" class="btn btn-secondary" aria-label="Acessar API de nós Tor">
-                        <span aria-hidden="true">⚡</span>
-                        Acessar API
-                    </a>
+        <!-- Faixa de confiança -->
+        <div class="trust">
+            <div class="container">
+                <div class="trust__row">
+                    <span class="trust__item"><svg class="icon"><use href="#i-clock"/></svg> Monitoramento 24/7</span>
+                    <span class="trust__item"><svg class="icon"><use href="#i-lock"/></svg> Fonte oficial do Tor Project</span>
+                    <span class="trust__item"><svg class="icon"><use href="#i-terminal"/></svg> API REST documentada</span>
+                    <span class="trust__item"><svg class="icon"><use href="#i-refresh"/></svg> Atualização contínua</span>
                 </div>
             </div>
         </div>
-    </section>
 
-    <!-- Enhanced About Section -->
-    <section id="about" class="section" role="main">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Inteligência de Ameaças Avançada</h2>
-                <p class="section-subtitle">
-                    Solução completa para monitoramento, análise e detecção de ameaças cibernéticas em tempo real
-                </p>
+        <!-- Capacidades -->
+        <section class="section" id="capacidades">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow"><span class="eyebrow__num">01</span> Capacidades</span>
+                    <h2 class="section-title">Detecção e análise de ameaças, do dado bruto à decisão.</h2>
+                    <p class="section-sub">Uma base de inteligência consolidada a partir de fontes oficiais e honeypots próprios.</p>
+                </div>
+                <div class="cards reveal">
+                    <article class="card">
+                        <span class="card__icon"><svg class="icon icon--lg"><use href="#i-refresh"/></svg></span>
+                        <h3 class="card__title">Atualização automática</h3>
+                        <p class="card__desc">Cache de nós exit renovado a cada 12 horas e dados detalhados a cada 5 minutos, em background.</p>
+                    </article>
+                    <article class="card">
+                        <span class="card__icon"><svg class="icon icon--lg"><use href="#i-bolt"/></svg></span>
+                        <h3 class="card__title">Respostas rápidas</h3>
+                        <p class="card__desc">Camada de cache em memória servindo os feeds em milissegundos, com rate limiting por IP.</p>
+                    </article>
+                    <article class="card">
+                        <span class="card__icon"><svg class="icon icon--lg"><use href="#i-shield"/></svg></span>
+                        <h3 class="card__title">Fontes confiáveis</h3>
+                        <p class="card__desc">Dados obtidos diretamente da API oficial do Tor Project (Onionoo e exit-addresses).</p>
+                    </article>
+                    <article class="card">
+                        <span class="card__icon"><svg class="icon icon--lg"><use href="#i-target"/></svg></span>
+                        <h3 class="card__title">Honeypot Cowrie</h3>
+                        <p class="card__desc">URLs maliciosas capturadas em tempo real e filtradas por domínios legítimos.</p>
+                    </article>
+                    <article class="card">
+                        <span class="card__icon"><svg class="icon icon--lg"><use href="#i-activity"/></svg></span>
+                        <h3 class="card__title">Estatísticas detalhadas</h3>
+                        <p class="card__desc">Distribuição por país, flags, bandwidth e status de atividade dos relays.</p>
+                    </article>
+                    <article class="card">
+                        <span class="card__icon"><svg class="icon icon--lg"><use href="#i-terminal"/></svg></span>
+                        <h3 class="card__title">API RESTful</h3>
+                        <p class="card__desc">Endpoints documentados em múltiplos formatos (JSON, TXT, RSS) prontos para automação.</p>
+                    </article>
+                </div>
             </div>
+        </section>
 
-            <div class="features-grid">
-                <article class="feature-card">
-                    <div class="feature-icon" aria-hidden="true">🔄</div>
-                    <h3>Atualização Automática</h3>
-                    <p>Cache inteligente renovado automaticamente a cada 12 horas com dados oficiais do Tor Project e feeds de inteligência de ameaças</p>
-                </article>
+        <!-- API -->
+        <section class="section section--inset" id="api">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow"><span class="eyebrow__num">02</span> API</span>
+                    <h2 class="section-title">Endpoints REST para integrar à sua stack.</h2>
+                    <p class="section-sub">Interface simples e estável para sistemas de segurança, SIEMs e scripts de automação.</p>
+                </div>
 
-                <article class="feature-card">
-                    <div class="feature-icon" aria-hidden="true">⚡</div>
-                    <h3>Performance Otimizada</h3>
-                    <p>Sistema de cache distribuído e otimizado para respostas em milissegundos, com rate limiting inteligente por IP</p>
-                </article>
-
-                <article class="feature-card">
-                    <div class="feature-icon" aria-hidden="true">🛡️</div>
-                    <h3>Fontes Confiáveis</h3>
-                    <p>Dados obtidos diretamente da API oficial do Tor Project e honeypots proprietários para máxima precisão</p>
-                </article>
-
-                <article class="feature-card">
-                    <div class="feature-icon" aria-hidden="true">🎯</div>
-                    <h3>Honeypot Avançado</h3>
-                    <p>Sistema de honeypot proprietário que captura URLs maliciosas em tempo real para análise de ameaças</p>
-                </article>
-
-                <article class="feature-card">
-                    <div class="feature-icon" aria-hidden="true">📊</div>
-                    <h3>Analytics Detalhado</h3>
-                    <p>Estatísticas completas por país, tipo de nó, status de atividade e análise temporal de ameaças</p>
-                </article>
-
-                <article class="feature-card">
-                    <div class="feature-icon" aria-hidden="true">🔌</div>
-                    <h3>API RESTful</h3>
-                    <p>Interface completa para desenvolvedores com endpoints documentados, autenticação e múltiplos formatos de saída</p>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Enhanced API Section -->
-    <section id="api" class="section section-dark">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">API Endpoints</h2>
-                <p class="section-subtitle">
-                    Interface RESTful completa para integração com sistemas de segurança e análise de ameaças
-                </p>
-            </div>
-
-            <div class="api-grid">
-                <div class="api-category">
-                    <h3 class="api-category-title">
-                        <span class="api-icon" aria-hidden="true">🎯</span>
-                        Endpoints Principais
-                    </h3>
-                    <div class="api-endpoints">
-                        <div class="api-endpoint">
-                            <div class="api-method get">GET</div>
-                            <div class="api-endpoint-info">
-                                <div class="api-path">/tornodes-ip.txt</div>
-                                <div class="api-desc">Lista completa de IPs dos nós Tor em formato texto</div>
-                            </div>
-                        </div>
-                        <div class="api-endpoint">
-                            <div class="api-method get">GET</div>
-                            <div class="api-endpoint-info">
-                                <div class="api-path">/honeypot-urls.txt</div>
-                                <div class="api-desc">URLs maliciosas capturadas pelo honeypot</div>
-                            </div>
-                        </div>
-                        <div class="api-endpoint">
-                            <div class="api-method get">GET</div>
-                            <div class="api-endpoint-info">
-                                <div class="api-path">/status</div>
-                                <div class="api-desc">Status do serviço e informações de cache</div>
-                            </div>
-                        </div>
+                <div class="api-grid reveal">
+                    <div class="api-col">
+                        <div class="api-col__title">Feeds principais</div>
+                        <div class="endpoint"><span class="method">GET</span><div><div class="endpoint__path">/tornodes-ip.txt</div><div class="endpoint__desc">Lista de IPs dos nós Tor exit (texto)</div></div></div>
+                        <div class="endpoint"><span class="method">GET</span><div><div class="endpoint__path">/honeypot-urls.txt</div><div class="endpoint__desc">URLs maliciosas do honeypot (texto)</div></div></div>
+                        <div class="endpoint"><span class="method">GET</span><div><div class="endpoint__path">/status</div><div class="endpoint__desc">Status do serviço e do cache (JSON)</div></div></div>
+                    </div>
+                    <div class="api-col">
+                        <div class="api-col__title">Dados detalhados</div>
+                        <div class="endpoint"><span class="method">GET</span><div><div class="endpoint__path">/api/nodes</div><div class="endpoint__desc">Todos os nós com informações completas</div></div></div>
+                        <div class="endpoint"><span class="method">GET</span><div><div class="endpoint__path">/api/nodes/running</div><div class="endpoint__desc">Apenas nós ativos</div></div></div>
+                        <div class="endpoint"><span class="method">GET</span><div><div class="endpoint__path">/api/stats</div><div class="endpoint__desc">Estatísticas e métricas agregadas</div></div></div>
+                    </div>
+                    <div class="api-col">
+                        <div class="api-col__title">Feeds e formatos</div>
+                        <div class="endpoint"><span class="method">GET</span><div><div class="endpoint__path">/api/feed/rss</div><div class="endpoint__desc">Feed RSS para monitoramento</div></div></div>
+                        <div class="endpoint"><span class="method">GET</span><div><div class="endpoint__path">/health</div><div class="endpoint__desc">Healthcheck para orquestradores</div></div></div>
                     </div>
                 </div>
 
-                <div class="api-category">
-                    <h3 class="api-category-title">
-                        <span class="api-icon" aria-hidden="true">📊</span>
-                        Dados Detalhados
-                    </h3>
-                    <div class="api-endpoints">
-                        <div class="api-endpoint">
-                            <div class="api-method get">GET</div>
-                            <div class="api-endpoint-info">
-                                <div class="api-path">/api/nodes</div>
-                                <div class="api-desc">Todos os nós Tor com informações completas</div>
-                            </div>
-                        </div>
-                        <div class="api-endpoint">
-                            <div class="api-method get">GET</div>
-                            <div class="api-endpoint-info">
-                                <div class="api-path">/api/nodes/running</div>
-                                <div class="api-desc">Apenas nós ativos e funcionais</div>
-                            </div>
-                        </div>
-                        <div class="api-endpoint">
-                            <div class="api-method get">GET</div>
-                            <div class="api-endpoint-info">
-                                <div class="api-path">/api/stats</div>
-                                <div class="api-desc">Estatísticas detalhadas e métricas</div>
-                            </div>
-                        </div>
+                <div class="code reveal">
+                    <div class="code__tabs" role="tablist" aria-label="Exemplos de código">
+                        <button class="code__tab active" data-lang="curl" role="tab" aria-selected="true">cURL</button>
+                        <button class="code__tab" data-lang="python" role="tab" aria-selected="false">Python</button>
+                        <button class="code__tab" data-lang="javascript" role="tab" aria-selected="false">JavaScript</button>
+                        <button class="code__tab" data-lang="php" role="tab" aria-selected="false">PHP</button>
                     </div>
-                </div>
-
-                <div class="api-category">
-                    <h3 class="api-category-title">
-                        <span class="api-icon" aria-hidden="true">🔍</span>
-                        Feeds e Formatos
-                    </h3>
-                    <div class="api-endpoints">
-                        <div class="api-endpoint">
-                            <div class="api-method get">GET</div>
-                            <div class="api-endpoint-info">
-                                <div class="api-path">/api/feed/rss</div>
-                                <div class="api-desc">Feed RSS para monitoramento automático</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Enhanced Code Examples -->
-            <div class="code-examples">
-                <div class="code-tabs" role="tablist" aria-label="Exemplos de código">
-                    <button class="code-tab active" data-lang="curl" role="tab" aria-selected="true">cURL</button>
-                    <button class="code-tab" data-lang="python" role="tab" aria-selected="false">Python</button>
-                    <button class="code-tab" data-lang="javascript" role="tab" aria-selected="false">JavaScript</button>
-                    <button class="code-tab" data-lang="php" role="tab" aria-selected="false">PHP</button>
-                </div>
-
-                <div class="code-content">
-                    <div class="code-block active" data-lang="curl">
-                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
-                        <pre><code># Buscar lista de IPs dos nós Tor
+                    <div class="code__panels">
+                        <div class="code__panel active" data-lang="curl">
+                            <button class="copy-btn" type="button">Copiar</button>
+<pre><code># Lista de IPs dos nós Tor exit
 curl -H "Accept: text/plain" \
-     https://tor.protexion.cloud/tornodes-ip.txt
+     https://cti.segark.com/tornodes-ip.txt
 
-# Buscar nós ativos com informações detalhadas
+# Nós ativos com detalhes
 curl -H "Accept: application/json" \
-     https://tor.protexion.cloud/api/nodes/running
+     https://cti.segark.com/api/nodes/running
 
-# Verificar status do serviço
-curl https://tor.protexion.cloud/status</code></pre>
-                    </div>
+# Status do serviço
+curl https://cti.segark.com/status</code></pre>
+                        </div>
+                        <div class="code__panel" data-lang="python">
+                            <button class="copy-btn" type="button">Copiar</button>
+<pre><code>import requests
 
-                    <div class="code-block" data-lang="python">
-                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
-                        <pre><code>import requests
-import json
+BASE = "https://cti.segark.com"
+headers = {"Accept": "application/json", "User-Agent": "CTI-Client/1.0"}
 
-# Configurar headers
-headers = {
-    'User-Agent': 'CTI-Client/1.0',
-    'Accept': 'application/json'
+# Nós exit ativos
+res = requests.get(f"{BASE}/api/nodes/running", headers=headers, timeout=15)
+res.raise_for_status()
+nodes = res.json()["nodes"]
+print(f"Nós ativos: {len(nodes)}")
+
+# URLs maliciosas
+urls = requests.get(f"{BASE}/honeypot-urls.txt", timeout=15).text
+urls = [u for u in urls.splitlines() if u and not u.startswith("#")]
+print(f"URLs detectadas: {len(urls)}")</code></pre>
+                        </div>
+                        <div class="code__panel" data-lang="javascript">
+                            <button class="copy-btn" type="button">Copiar</button>
+<pre><code>const BASE = "https://cti.segark.com";
+
+async function getRunningNodes() {
+  const res = await fetch(`${BASE}/api/nodes/running`);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const { nodes } = await res.json();
+  return nodes;
 }
 
-# Buscar todos os nós Tor
-response = requests.get(
-    'https://tor.protexion.cloud/api/nodes',
-    headers=headers
-)
-
-if response.status_code == 200:
-    data = response.json()
-    nodes = data['nodes']
-
-    # Filtrar apenas nós exit ativos
-    exit_nodes = [
-        node for node in nodes
-        if node.get('exit_node') and node.get('running')
-    ]
-
-    print(f"Nós exit ativos: {len(exit_nodes)}")
-
-    # Buscar URLs maliciosas
-    urls_response = requests.get(
-        'https://tor.protexion.cloud/honeypot-urls.txt',
-        headers={'Accept': 'text/plain'}
-    )
-
-    if urls_response.status_code == 200:
-        malicious_urls = urls_response.text.strip().split('\n')
-        print(f"URLs maliciosas detectadas: {len(malicious_urls)}")
-else:
-    print(f"Erro: {response.status_code}")</code></pre>
-                    </div>
-
-                    <div class="code-block" data-lang="javascript">
-                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
-                        <pre><code>// Classe para interagir com a API CTI Protexion
-class CTIProtexion {
-    constructor(baseUrl = 'https://tor.protexion.cloud') {
-        this.baseUrl = baseUrl;
-        this.headers = {
-            'Accept': 'application/json',
-            'User-Agent': 'CTI-JS-Client/1.0'
-        };
-    }
-
-    async getStats() {
-        try {
-            const response = await fetch(`${this.baseUrl}/api/stats`, {
-                headers: this.headers
-            });
-
-            if (!response.ok) {
-                throw new Error(`HTTP ${response.status}`);
-            }
-
-            const data = await response.json();
-            return data.statistics;
-        } catch (error) {
-            console.error('Erro ao buscar estatísticas:', error);
-            return null;
-        }
-    }
-
-    async getRunningNodes() {
-        try {
-            const response = await fetch(`${this.baseUrl}/api/nodes/running`, {
-                headers: this.headers
-            });
-
-            const data = await response.json();
-            return data.nodes;
-        } catch (error) {
-            console.error('Erro ao buscar nós ativos:', error);
-            return [];
-        }
-    }
-
-    async getMaliciousUrls() {
-        try {
-            const response = await fetch(`${this.baseUrl}/honeypot-urls.txt`, {
-                headers: { 'Accept': 'text/plain' }
-            });
-
-            const text = await response.text();
-            return text.split('\n').filter(url => url && !url.startsWith('#'));
-        } catch (error) {
-            console.error('Erro ao buscar URLs maliciosas:', error);
-            return [];
-        }
-    }
+async function getMaliciousUrls() {
+  const text = await (await fetch(`${BASE}/honeypot-urls.txt`)).text();
+  return text.split("\n").filter((u) => u && !u.startsWith("#"));
 }
 
-// Exemplo de uso
-const cti = new CTIProtexion();
+getRunningNodes().then((n) => console.log(`Nós ativos: ${n.length}`));</code></pre>
+                        </div>
+                        <div class="code__panel" data-lang="php">
+                            <button class="copy-btn" type="button">Copiar</button>
+<pre><code>&lt;?php
+$base = "https://cti.segark.com";
 
-cti.getStats().then(stats => {
-    if (stats) {
-        console.log('Estatísticas CTI:', stats);
-    }
-});
-
-cti.getRunningNodes().then(nodes => {
-    console.log(`Nós Tor ativos: ${nodes.length}`);
-});
-
-cti.getMaliciousUrls().then(urls => {
-    console.log(`URLs maliciosas: ${urls.length}`);
-});</code></pre>
-                    </div>
-
-                    <div class="code-block" data-lang="php">
-                        <button class="copy-button" onclick="copyCode(this)">Copiar</button>
-                        <pre><code>&lt;?php
-class CTIProtexion {
-    private $baseUrl;
-    private $headers;
-
-    public function __construct($baseUrl = 'https://tor.protexion.cloud') {
-        $this->baseUrl = $baseUrl;
-        $this->headers = [
-            'Accept: application/json',
-            'User-Agent: CTI-PHP-Client/1.0'
-        ];
-    }
-
-    public function getTorNodes() {
-        $url = $this->baseUrl . '/tornodes-ip.txt';
-
-        $context = stream_context_create([
-            'http' => [
-                'method' => 'GET',
-                'header' => implode("\r\n", [
-                    'Accept: text/plain',
-                    'User-Agent: CTI-PHP-Client/1.0'
-                ])
-            ]
-        ]);
-
-        $response = @file_get_contents($url, false, $context);
-
-        if ($response === false) {
-            throw new Exception("Erro ao buscar nós Tor");
-        }
-
-        $lines = preg_split("/\r\n|\n|\r/", $response);
-        $ips = [];
-
-        foreach ($lines as $line) {
-            $line = trim($line);
-
-            // Pular comentários e linhas vazias
-            if ($line === '' || strpos($line, '#') === 0) {
-                continue;
-            }
-
-            // Validar IP
-            if (filter_var($line, FILTER_VALIDATE_IP)) {
-                $ips[] = $line;
-            }
-        }
-
-        return $ips;
-    }
-
-    public function getApiData($endpoint) {
-        $url = $this->baseUrl . $endpoint;
-
-        $context = stream_context_create([
-            'http' => [
-                'method' => 'GET',
-                'header' => implode("\r\n", $this->headers)
-            ]
-        ]);
-
-        $response = @file_get_contents($url, false, $context);
-
-        if ($response === false) {
-            throw new Exception("Erro ao buscar dados da API");
-        }
-
-        return json_decode($response, true);
-    }
-
-    public function getMaliciousUrls() {
-        $url = $this->baseUrl . '/honeypot-urls.txt';
-
-        $context = stream_context_create([
-            'http' => [
-                'method' => 'GET',
-                'header' => 'Accept: text/plain'
-            ]
-        ]);
-
-        $response = @file_get_contents($url, false, $context);
-
-        if ($response === false) {
-            throw new Exception("Erro ao buscar URLs maliciosas");
-        }
-
-        $lines = preg_split("/\r\n|\n|\r/", $response);
-        $urls = [];
-
-        foreach ($lines as $line) {
-            $line = trim($line);
-            if ($line && !str_starts_with($line, '#')) {
-                $urls[] = $line;
-            }
-        }
-
-        return $urls;
-    }
+$json = file_get_contents("$base/api/stats");
+$stats = json_decode($json, true);
+if (($stats["status"] ?? "") === "success") {
+    echo "Nós ativos: " . $stats["statistics"]["running_nodes"] . "\n";
 }
 
-// Exemplo de uso
-try {
-    $cti = new CTIProtexion();
-
-    // Buscar nós Tor
-    $torNodes = $cti->getTorNodes();
-    echo "Total de nós Tor: " . count($torNodes) . "\n";
-
-    // Buscar estatísticas
-    $stats = $cti->getApiData('/api/stats');
-    if ($stats && $stats['status'] === 'success') {
-        echo "Nós ativos: " . $stats['statistics']['running_nodes'] . "\n";
-    }
-
-    // Buscar URLs maliciosas
-    $maliciousUrls = $cti->getMaliciousUrls();
-    echo "URLs maliciosas detectadas: " . count($maliciousUrls) . "\n";
-
-} catch (Exception $e) {
-    echo "Erro: " . $e->getMessage() . "\n";
-}
+$urls = file_get_contents("$base/honeypot-urls.txt");
+$lines = array_filter(
+    explode("\n", $urls),
+    fn($l) => $l !== "" && !str_starts_with($l, "#")
+);
+echo "URLs detectadas: " . count($lines) . "\n";
 ?&gt;</code></pre>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Enhanced URL List Section -->
-    <section id="urls" class="section">
+        <!-- URLs maliciosas -->
+        <section class="section" id="urls">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow"><span class="eyebrow__num">03</span> URLs Maliciosas</span>
+                    <h2 class="section-title">Feed do honeypot, atualizado continuamente.</h2>
+                    <p class="section-sub">URLs capturadas pelo honeypot Cowrie nos últimos 30 dias, com domínios legítimos filtrados.</p>
+                </div>
+
+                <div class="panel reveal">
+                    <div class="panel__head">
+                        <span class="panel__title"><svg class="icon"><use href="#i-link"/></svg> Últimas detecções</span>
+                        <span class="badge-count" id="urlCount">carregando…</span>
+                    </div>
+                    <ul class="url-feed" id="urlFeed" aria-label="Lista de URLs maliciosas">
+                        <li><span class="spinner"></span> Carregando feed…</li>
+                    </ul>
+                    <div class="panel__foot">
+                        <a href="/honeypot-urls.txt" class="btn btn--ghost"><svg class="icon"><use href="#i-download"/></svg> Baixar lista completa</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Operação -->
+        <section class="section section--inset" id="operacao">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow"><span class="eyebrow__num">04</span> Operação</span>
+                    <h2 class="section-title">Infraestrutura e parâmetros do serviço.</h2>
+                    <p class="section-sub">Transparência sobre como os dados são coletados, armazenados e servidos.</p>
+                </div>
+
+                <div class="tiles reveal">
+                    <div class="tile"><span class="tile__icon"><svg class="icon icon--lg"><use href="#i-clock"/></svg></span><div><div class="tile__value">24/7</div><div class="tile__label">Monitoramento contínuo</div></div></div>
+                    <div class="tile"><span class="tile__icon"><svg class="icon icon--lg"><use href="#i-refresh"/></svg></span><div><div class="tile__value">12h</div><div class="tile__label">Janela de cache (exit)</div></div></div>
+                    <div class="tile"><span class="tile__icon"><svg class="icon icon--lg"><use href="#i-activity"/></svg></span><div><div class="tile__value">5min</div><div class="tile__label">TTL dos dados detalhados</div></div></div>
+                    <div class="tile"><span class="tile__icon"><svg class="icon icon--lg"><use href="#i-terminal"/></svg></span><div><div class="tile__value">REST</div><div class="tile__label">JSON · TXT · RSS</div></div></div>
+                </div>
+
+                <div class="specs reveal">
+                    <div class="specs__title">Especificações técnicas</div>
+                    <div class="specs__grid">
+                        <div class="spec"><span class="spec__k">Backend</span><span class="spec__v">Python 3.12+</span></div>
+                        <div class="spec"><span class="spec__k">Servidor web</span><span class="spec__v">Flask + Gunicorn</span></div>
+                        <div class="spec"><span class="spec__k">Fonte de dados</span><span class="spec__v">Tor Project (Onionoo)</span></div>
+                        <div class="spec"><span class="spec__k">Rate limiting</span><span class="spec__v">Por IP (in-memory)</span></div>
+                        <div class="spec"><span class="spec__k">Cache</span><span class="spec__v">Em memória, com TTL</span></div>
+                        <div class="spec"><span class="spec__k">Honeypot</span><span class="spec__v">Cowrie</span></div>
+                        <div class="spec"><span class="spec__k">Formatos</span><span class="spec__v">JSON · TXT · RSS</span></div>
+                        <div class="spec"><span class="spec__k">Atualização</span><span class="spec__v">Background contínuo</span></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contato -->
+        <section class="section" id="contato">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow"><span class="eyebrow__num">05</span> Contato &amp; Suporte</span>
+                    <h2 class="section-title">Fale com a equipe da Segark.</h2>
+                    <p class="section-sub">Suporte técnico, integração personalizada e consultoria em inteligência de ameaças.</p>
+                </div>
+
+                <div class="contact-grid reveal">
+                    <div class="contact-card">
+                        <h3>Suporte Segark</h3>
+                        <p>Entre em contato para suporte técnico, integração com seus sistemas de segurança ou desenvolvimento de soluções CTI sob medida.</p>
+                        <div class="contact-meta">
+                            <a href="mailto:contato@segark.com"><svg class="icon"><use href="#i-mail"/></svg> contato@segark.com</a>
+                            <a href="https://cti.segark.com"><svg class="icon"><use href="#i-globe"/></svg> cti.segark.com</a>
+                        </div>
+                        <div class="credit">
+                            Desenvolvido por <b>Dathan Nobrega</b> ·
+                            <a href="https://github.com/dathannobrega" target="_blank" rel="noopener noreferrer">GitHub</a> ·
+                            <a href="https://www.linkedin.com/in/dathannobrega/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                        </div>
+                    </div>
+                    <div class="contact-card">
+                        <h3>Recursos</h3>
+                        <p>Acesse os feeds e a documentação para começar a integrar em minutos.</p>
+                        <div class="contact-meta">
+                            <a href="/api/nodes"><svg class="icon"><use href="#i-terminal"/></svg> API de nós</a>
+                            <a href="/api/feed/rss"><svg class="icon"><use href="#i-activity"/></svg> Feed RSS</a>
+                            <a href="/status"><svg class="icon"><use href="#i-check"/></svg> Status do serviço</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer class="footer">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">URLs Maliciosas Detectadas</h2>
-                <p class="section-subtitle">
-                    Lista dinâmica de URLs capturadas pelo nosso sistema de honeypot para análise de ameaças cibernéticas
-                </p>
-            </div>
-
-            <div class="url-section">
-                <div class="url-list-header">
-                    <h3>Últimas Detecções</h3>
-                    <span class="url-count">Carregando...</span>
-                </div>
-                <ul id="urlList" class="url-list" aria-label="Lista de URLs maliciosas">
-                    <li><span class="loading"></span> Carregando URLs maliciosas...</li>
-                </ul>
-                <div class="url-actions">
-                    <a href="/honeypot-urls.txt" class="btn btn-secondary">
-                        <span aria-hidden="true">📥</span>
-                        Baixar Lista Completa
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Enhanced Stats Section -->
-    <section id="stats" class="section section-dark">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Estatísticas em Tempo Real</h2>
-                <p class="section-subtitle">
-                    Monitoramento 24/7 da rede Tor e análise contínua de ameaças cibernéticas
-                </p>
-            </div>
-
-            <div class="stats-dashboard">
-                <div class="stats-grid">
-                    <div class="stat-box">
-                        <div class="stat-icon" aria-hidden="true">🌐</div>
-                        <div class="stat-info">
-                            <div class="stat-value">24/7</div>
-                            <div class="stat-title">Monitoramento Contínuo</div>
-                        </div>
-                    </div>
-
-                    <div class="stat-box">
-                        <div class="stat-icon" aria-hidden="true">⏱️</div>
-                        <div class="stat-info">
-                            <div class="stat-value">12h</div>
-                            <div class="stat-title">Intervalo de Cache</div>
-                        </div>
-                    </div>
-
-                    <div class="stat-box">
-                        <div class="stat-icon" aria-hidden="true">🚀</div>
-                        <div class="stat-info">
-                            <div class="stat-value">99.9%</div>
-                            <div class="stat-title">Disponibilidade</div>
-                        </div>
-                    </div>
-
-                    <div class="stat-box">
-                        <div class="stat-icon" aria-hidden="true">🔗</div>
-                        <div class="stat-info">
-                            <div class="stat-value">REST</div>
-                            <div class="stat-title">API Completa</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tech-info">
-                    <h3>Especificações Técnicas</h3>
-                    <div class="tech-grid">
-                        <div class="tech-item">
-                            <span class="tech-label">Linguagem Backend:</span>
-                            <span class="tech-value">Python 3.11+</span>
-                        </div>
-                        <div class="tech-item">
-                            <span class="tech-label">Framework Web:</span>
-                            <span class="tech-value">Flask + Gunicorn</span>
-                        </div>
-                        <div class="tech-item">
-                            <span class="tech-label">Fonte de Dados:</span>
-                            <span class="tech-value">Tor Project Official API</span>
-                        </div>
-                        <div class="tech-item">
-                            <span class="tech-label">Rate Limiting:</span>
-                            <span class="tech-value">Por IP com Redis</span>
-                        </div>
-                        <div class="tech-item">
-                            <span class="tech-label">Sistema de Cache:</span>
-                            <span class="tech-value">Redis + Memória</span>
-                        </div>
-                        <div class="tech-item">
-                            <span class="tech-label">Formatos de Saída:</span>
-                            <span class="tech-value">JSON, TXT, RSS</span>
-                        </div>
-                        <div class="tech-item">
-                            <span class="tech-label">Honeypot Engine:</span>
-                            <span class="tech-value">Proprietário</span>
-                        </div>
-                        <div class="tech-item">
-                            <span class="tech-label">Infraestrutura:</span>
-                            <span class="tech-value">Cloud Native</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Enhanced Contact Section -->
-    <section id="contact" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Desenvolvedor & Suporte</h2>
-                <p class="section-subtitle">
-                    Especialista em Segurança Cibernética e Inteligência de Ameaças
-                </p>
-            </div>
-
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Dathan Nobrega</h3>
-                    <p>Especialista em segurança cibernética, análise de malware e infraestrutura de rede. Criador do CTI Protexion para auxiliar profissionais de segurança, pesquisadores e organizações na detecção e análise de ameaças.</p>
-
-                    <div class="contact-links">
-                        <a href="https://github.com/dathannobrega" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="GitHub do Dathan Nobrega">
-                            <span class="contact-icon" aria-hidden="true">🐙</span>
-                            <span>GitHub</span>
-                        </a>
-                        <a href="https://www.linkedin.com/in/dathannobrega/" target="_blank" rel="noopener noreferrer" class="contact-link" aria-label="LinkedIn do Dathan Nobrega">
-                            <span class="contact-icon" aria-hidden="true">💼</span>
-                            <span>LinkedIn</span>
-                        </a>
-                        <a href="mailto:dathan.nobrega@datan.com.br" class="contact-link" aria-label="Email do Dathan Nobrega">
-                            <span class="contact-icon" aria-hidden="true">📧</span>
-                            <span>Email</span>
-                        </a>
-                    </div>
-                </div>
-
-                <div class="contact-cta">
-                    <h4>Precisa de Suporte?</h4>
-                    <p>Entre em contato para suporte técnico, integração personalizada, consultoria em segurança ou desenvolvimento de soluções CTI customizadas.</p>
-                    <a href="mailto:dathan.nobrega@datan.com.br" class="btn btn-primary">
-                        <span aria-hidden="true">📞</span>
-                        Entrar em Contato
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Enhanced Footer -->
-    <footer class="footer" role="contentinfo">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <span class="footer-logo" aria-hidden="true">🛡️</span>
-                    <span class="footer-title">CTI Protexion</span>
-                </div>
-
-                <div class="footer-links">
-                    <a href="https://tor.protexion.cloud" target="_blank" rel="noopener noreferrer">tor.protexion.cloud</a>
-                    <span aria-hidden="true">•</span>
+            <div class="footer__row">
+                <a href="#top" class="brand">
+                    <span class="brand__mark"><svg class="icon"><use href="#i-shield"/></svg></span>
+                    <span class="brand__text">
+                        <span class="brand__name">CTI Protexion</span>
+                        <span class="brand__by">By Segark</span>
+                    </span>
+                </a>
+                <nav class="footer__links" aria-label="Links do rodapé">
+                    <a href="https://cti.segark.com">cti.segark.com</a>
                     <a href="/api/feed/rss">RSS Feed</a>
-                    <span aria-hidden="true">•</span>
-                    <a href="/status">Status API</a>
-                    <span aria-hidden="true">•</span>
-                    <a href="https://datan.com.br" target="_blank" rel="noopener noreferrer">DataN</a>
-                </div>
-
-                <div class="footer-copy">
-                    © 2025 DataN. Plataforma CTI fornecida para fins educacionais, pesquisa e segurança cibernética.
-                </div>
+                    <a href="/status">Status</a>
+                    <a href="/honeypot-urls.txt">Honeypot URLs</a>
+                </nav>
             </div>
+            <div class="footer__copy">© 2026 Segark · CTI Protexion. Plataforma fornecida para fins de segurança cibernética, pesquisa e educação.</div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

@@ -1,305 +1,202 @@
-// Enhanced JavaScript for CTI Protexion
-document.addEventListener('DOMContentLoaded', () => {
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
+/* CTI Protexion by Segark — interações da interface */
+(() => {
+  'use strict';
+
+  const $ = (sel, ctx = document) => ctx.querySelector(sel);
+  const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const icon = (id) => `<svg class="icon" aria-hidden="true"><use href="#${id}"/></svg>`;
+
+  /* Topbar: estado "scrolled" --------------------------------------------- */
+  const topbar = $('#topbar');
+  const onScroll = () => topbar && topbar.classList.toggle('scrolled', window.scrollY > 24);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* Navegação mobile ------------------------------------------------------ */
+  const navToggle = $('#navToggle');
+  const nav = $('#nav');
+  if (navToggle && nav) {
+    navToggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      navToggle.setAttribute('aria-expanded', String(open));
     });
+    $$('.nav__link', nav).forEach((link) =>
+      link.addEventListener('click', () => {
+        nav.classList.remove('open');
+        navToggle.setAttribute('aria-expanded', 'false');
+      })
+    );
+  }
 
-    // Mobile navigation toggle
-    const navToggle = document.querySelector('.nav-toggle');
-    const navLinks = document.querySelector('.nav-links');
-
-    if (navToggle && navLinks) {
-        navToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            navToggle.classList.toggle('active');
-
-            // Update ARIA attributes
-            const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
-            navToggle.setAttribute('aria-expanded', !isExpanded);
-        });
+  /* Contadores animados --------------------------------------------------- */
+  const formatNum = (n) => n.toLocaleString('pt-BR');
+  function animateCount(el) {
+    const target = parseInt(el.dataset.count, 10) || 0;
+    if (prefersReduced || target === 0) {
+      el.textContent = formatNum(target);
+      return;
     }
-
-    // Enhanced navbar scroll effect
-    let lastScrollY = window.scrollY;
-    const navbar = document.querySelector('.navbar');
-
-    window.addEventListener('scroll', () => {
-        const currentScrollY = window.scrollY;
-
-        if (currentScrollY > 100) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-
-        lastScrollY = currentScrollY;
-    });
-
-    // Animated counter for hero stats
-    function animateCounter(element, target, duration = 2000) {
-        const start = 0;
-        const increment = target / (duration / 16);
-        let current = start;
-
-        const timer = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                current = target;
-                clearInterval(timer);
-            }
-            element.textContent = Math.floor(current).toLocaleString();
-        }, 16);
-    }
-
-    // Initialize counters when they come into view
-    const observerOptions = {
-        threshold: 0.5,
-        rootMargin: '0px 0px -100px 0px'
+    const duration = 1200;
+    let startTime = null;
+    const step = (ts) => {
+      if (startTime === null) startTime = ts;
+      const p = Math.min((ts - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = formatNum(Math.floor(eased * target));
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = formatNum(target);
     };
+    requestAnimationFrame(step);
+  }
 
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !entry.target.dataset.animated) {
-                const target = parseInt(entry.target.dataset.target) || 0;
-                entry.target.innerHTML = ''; // Remove loading spinner
-                animateCounter(entry.target, target);
-                entry.target.dataset.animated = 'true';
-                observer.unobserve(entry.target);
-            }
+  const countObserver = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateCount(entry.target);
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.4 }
+  );
+  $$('[data-count]').forEach((el) => countObserver.observe(el));
+
+  /* Reveal on scroll ------------------------------------------------------ */
+  if (prefersReduced) {
+    $$('.reveal').forEach((el) => el.classList.add('in-view'));
+  } else {
+    const revealObserver = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            obs.unobserve(entry.target);
+          }
         });
-    }, observerOptions);
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+    $$('.reveal').forEach((el) => revealObserver.observe(el));
+  }
 
-    document.querySelectorAll('.stat-number[data-target]').forEach(el => {
-        observer.observe(el);
+  /* Abas de código -------------------------------------------------------- */
+  const tabs = $$('.code__tab');
+  const panels = $$('.code__panel');
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const lang = tab.dataset.lang;
+      tabs.forEach((t) => {
+        const active = t === tab;
+        t.classList.toggle('active', active);
+        t.setAttribute('aria-selected', String(active));
+      });
+      panels.forEach((p) => p.classList.toggle('active', p.dataset.lang === lang));
     });
+  });
 
-    // Code tabs functionality
-    const codeTabs = document.querySelectorAll('.code-tab');
-    const codeBlocks = document.querySelectorAll('.code-block');
-
-    codeTabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            const lang = tab.dataset.lang;
-
-            // Remove active class from all tabs and blocks
-            codeTabs.forEach(t => {
-                t.classList.remove('active');
-                t.setAttribute('aria-selected', 'false');
-            });
-            codeBlocks.forEach(b => b.classList.remove('active'));
-
-            // Add active class to clicked tab and corresponding block
-            tab.classList.add('active');
-            tab.setAttribute('aria-selected', 'true');
-            document.querySelector(`.code-block[data-lang="${lang}"]`).classList.add('active');
-        });
-    });
-
-    // Enhanced API functions
-    async function updateStats() {
-        try {
-            const response = await fetch('/status');
-            const data = await response.json();
-
-            // Update status indicator
-            const statusIndicator = document.querySelector('.status-indicator');
-            if (statusIndicator && data.status === 'online') {
-                statusIndicator.style.background = 'var(--success)';
-            }
-
-            // Update counters if not already animated
-            if (data.ip_count !== undefined) {
-                const ipCountEl = document.querySelector('[data-target]');
-                if (ipCountEl && !ipCountEl.dataset.animated) {
-                    ipCountEl.dataset.target = data.ip_count;
-                }
-            }
-
-        } catch (error) {
-            console.log('Erro ao atualizar estatísticas:', error);
-            showNotification('Erro ao carregar estatísticas', 'error');
-        }
-    }
-
-    // Load dynamic URL list
-    async function loadUrlList() {
-        try {
-            const response = await fetch('/honeypot-urls.txt');
-            const text = await response.text();
-            const urls = text.split('\n').filter(line => line && !line.startsWith('#'));
-
-            const listEl = document.getElementById('urlList');
-            const countEl = document.querySelector('.url-count');
-
-            if (listEl) {
-                listEl.innerHTML = '';
-
-                if (urls.length === 0) {
-                    const li = document.createElement('li');
-                    li.textContent = 'Nenhuma URL maliciosa detectada no momento';
-                    li.style.fontStyle = 'italic';
-                    li.style.color = 'var(--gray-500)';
-                    listEl.appendChild(li);
-                } else {
-                    // Show only first 50 URLs to avoid performance issues
-                    const displayUrls = urls.slice(0, 50);
-
-                    displayUrls.forEach((url, index) => {
-                        const li = document.createElement('li');
-                        li.textContent = url;
-                        li.style.animationDelay = `${index * 50}ms`;
-                        li.classList.add('fade-in-up');
-                        listEl.appendChild(li);
-                    });
-
-                    if (urls.length > 50) {
-                        const li = document.createElement('li');
-                        li.innerHTML = `<em>... e mais ${urls.length - 50} URLs (baixe a lista completa)</em>`;
-                        li.style.color = 'var(--gray-500)';
-                        li.style.fontStyle = 'italic';
-                        listEl.appendChild(li);
-                    }
-                }
-            }
-
-            if (countEl) {
-                countEl.textContent = `${urls.length} URLs detectadas`;
-            }
-
-        } catch (error) {
-            console.log('Erro ao carregar URLs:', error);
-            const listEl = document.getElementById('urlList');
-            if (listEl) {
-                listEl.innerHTML = '<li style="color: var(--error);">Erro ao carregar URLs maliciosas</li>';
-            }
-        }
-    }
-
-    // Copy code functionality
-    window.copyCode = async function(button) {
-        const codeBlock = button.nextElementSibling.querySelector('code');
-        const text = codeBlock.textContent;
-
-        try {
-            await navigator.clipboard.writeText(text);
-
-            // Visual feedback
-            const originalText = button.textContent;
-            button.textContent = 'Copiado!';
-            button.style.background = 'var(--success)';
-            button.style.color = 'var(--dark)';
-
-            setTimeout(() => {
-                button.textContent = originalText;
-                button.style.background = '';
-                button.style.color = '';
-            }, 2000);
-
-            showNotification('Código copiado com sucesso!', 'success');
-        } catch (err) {
-            showNotification('Erro ao copiar código', 'error');
-        }
-    };
-
-    // Notification system
-    window.showNotification = function(message, type = 'info') {
-        const notification = document.createElement('div');
-        notification.className = `notification ${type}`;
-        notification.textContent = message;
-
-        document.body.appendChild(notification);
-
-        // Animate in
+  /* Botões de copiar ------------------------------------------------------ */
+  $$('.copy-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const code = btn.parentElement.querySelector('pre code');
+      if (!code) return;
+      try {
+        await navigator.clipboard.writeText(code.textContent.trim());
+        const original = btn.textContent;
+        btn.textContent = 'Copiado';
+        btn.classList.add('copied');
+        toast('Código copiado', 'ok');
         setTimeout(() => {
-            notification.classList.add('show');
-        }, 100);
-
-        // Animate out and remove
-        setTimeout(() => {
-            notification.classList.remove('show');
-            setTimeout(() => {
-                if (document.body.contains(notification)) {
-                    document.body.removeChild(notification);
-                }
-            }, 300);
-        }, 3000);
-    };
-
-    // Initialize data loading
-    updateStats();
-    loadUrlList();
-
-    // Update stats every 30 seconds
-    setInterval(updateStats, 30000);
-
-    // Update URLs every 5 minutes
-    setInterval(loadUrlList, 300000);
-
-    // Add fade-in animation to sections
-    const sections = document.querySelectorAll('.section');
-    const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fade-in-up');
-            }
-        });
-    }, { threshold: 0.1 });
-
-    sections.forEach(section => {
-        sectionObserver.observe(section);
+          btn.textContent = original;
+          btn.classList.remove('copied');
+        }, 1800);
+      } catch (_) {
+        toast('Não foi possível copiar', 'err');
+      }
     });
+  });
 
-    // Performance optimization: Reduce animations on low-end devices
-    if (navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4) {
-        document.documentElement.style.setProperty('--transition-normal', '150ms ease');
-        document.documentElement.style.setProperty('--transition-slow', '200ms ease');
+  /* Feed de URLs do honeypot --------------------------------------------- */
+  const feedEl = $('#urlFeed');
+  const countEl = $('#urlCount');
+
+  function renderState(iconId, message) {
+    if (feedEl) {
+      feedEl.innerHTML = `<li class="url-feed__state">${icon(iconId)}<span>${message}</span></li>`;
     }
+  }
 
-    // Accessibility: Respect user's motion preferences
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        document.documentElement.style.setProperty('--transition-fast', '0ms');
-        document.documentElement.style.setProperty('--transition-normal', '0ms');
-        document.documentElement.style.setProperty('--transition-slow', '0ms');
+  async function loadUrlFeed() {
+    if (!feedEl) return;
+    try {
+      const res = await fetch('/honeypot-urls.txt', { headers: { Accept: 'text/plain' } });
+      const text = await res.text();
+      const urls = text.split('\n').map((l) => l.trim()).filter((l) => l && !l.startsWith('#'));
+
+      if (urls.length === 0) {
+        if (countEl) countEl.textContent = '0 URLs';
+        renderState('i-inbox', 'Nenhuma URL maliciosa registrada no momento.');
+        return;
+      }
+
+      const shown = urls.slice(0, 100);
+      feedEl.innerHTML = shown
+        .map((url, i) => `<li><span class="ix">${String(i + 1).padStart(2, '0')}</span><span>${escapeHtml(url)}</span></li>`)
+        .join('');
+      if (urls.length > shown.length) {
+        const extra = urls.length - shown.length;
+        feedEl.insertAdjacentHTML(
+          'beforeend',
+          `<li class="url-feed__state">${icon('i-download')}<span>+${formatNum(extra)} URLs na lista completa</span></li>`
+        );
+      }
+      if (countEl) countEl.textContent = `${formatNum(urls.length)} URLs`;
+    } catch (_) {
+      if (countEl) countEl.textContent = 'indisponível';
+      renderState('i-alert', 'Feed temporariamente indisponível. Tente novamente em instantes.');
     }
-});
+  }
 
-// Global CTI API interface
-window.CTIProtexion = {
-    async testEndpoint(endpoint) {
-        try {
-            const response = await fetch(endpoint);
-            const data = await response.json();
-            console.log(`Dados de ${endpoint}:`, data);
-            return data;
-        } catch (error) {
-            console.error(`Erro ao testar ${endpoint}:`, error);
-            return null;
-        }
-    },
+  function escapeHtml(s) {
+    return s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  }
 
-    async getAllNodes() {
-        return await this.testEndpoint('/api/nodes');
-    },
-
-    async getRunningNodes() {
-        return await this.testEndpoint('/api/nodes/running');
-    },
-
-    async getStats() {
-        return await this.testEndpoint('/api/stats');
-    },
-
-    async getStatus() {
-        return await this.testEndpoint('/status');
+  /* Status do serviço ----------------------------------------------------- */
+  async function refreshStatus() {
+    const textEl = $('#statusText');
+    try {
+      const res = await fetch('/status', { headers: { Accept: 'application/json' } });
+      const data = await res.json();
+      if (textEl) textEl.textContent = data.status === 'online' ? 'Operacional' : 'Degradado';
+    } catch (_) {
+      if (textEl) textEl.textContent = 'Sem conexão';
     }
-};
+  }
+
+  /* Toast ----------------------------------------------------------------- */
+  let toastTimer = null;
+  function toast(message, kind = 'ok') {
+    let el = $('#toast');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'toast';
+      el.className = 'toast';
+      document.body.appendChild(el);
+    }
+    const iconId = kind === 'err' ? 'i-alert' : 'i-check';
+    el.className = `toast toast--${kind}`;
+    el.innerHTML = `${icon(iconId)}<span></span>`;
+    el.querySelector('span').textContent = message;
+    requestAnimationFrame(() => el.classList.add('show'));
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => el.classList.remove('show'), 2600);
+  }
+
+  /* Inicialização --------------------------------------------------------- */
+  loadUrlFeed();
+  refreshStatus();
+  setInterval(refreshStatus, 60000);
+  setInterval(loadUrlFeed, 300000);
+})();

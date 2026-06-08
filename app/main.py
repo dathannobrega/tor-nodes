@@ -1,9 +1,10 @@
 """
-Protexion TorNodes Service
+CTI Protexion by Segark
 Serviço de monitoramento de nós Tor com API RESTful
 """
 
 import logging
+import mimetypes
 from datetime import datetime
 from flask import Flask
 from flask_limiter import Limiter
@@ -15,6 +16,9 @@ from services.cache_service import CacheService
 from services.url_service import UrlService
 from api.routes import create_routes
 from utils.logger import setup_logger
+
+# Garante o mimetype correto ao servir fontes self-hosted (.woff2)
+mimetypes.add_type('font/woff2', '.woff2')
 
 
 def create_app() -> Flask:
@@ -63,10 +67,11 @@ app = create_app()
 
 if __name__ == '__main__':
 
-    print("🧅 Iniciando Protexion TorNodes Service...")
-    print(f"🚀 Servidor iniciado em http://localhost:{Config.PORT}")
-    print("📋 Endpoints disponíveis:")
+    print("Iniciando CTI Protexion by Segark...")
+    print(f"Servidor iniciado em http://localhost:{Config.PORT}")
+    print("Endpoints disponíveis:")
     print("   - GET / (página inicial)")
+    print("   - GET /health (healthcheck)")
     print("   - GET /tornodes-ip.txt (lista de IPs)")
     print("   - GET /honeypot-urls.txt (lista de URLs)")
     print("   - GET /status (status do serviço)")

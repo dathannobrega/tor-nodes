@@ -22,6 +22,39 @@ from utils.formatters import (
 def create_routes(app: Flask, tor_service: TorService, url_service: UrlService, limiter: Limiter) -> None:
     """Cria e registra todas as rotas da aplicação"""
     
+    @app.route('/health')
+    @limiter.exempt
+    def health():
+        """Healthcheck leve para orquestradores (Docker/Kubernetes)."""
+        return jsonify({'status': 'ok'}), 200
+
+    @app.route('/robots.txt')
+    @limiter.exempt
+    def robots_txt():
+        """robots.txt: permite indexação e aponta o sitemap."""
+        content = (
+            "User-agent: *\n"
+            "Allow: /\n\n"
+            "Sitemap: https://cti.segark.com/sitemap.xml\n"
+        )
+        return Response(content, mimetype='text/plain')
+
+    @app.route('/sitemap.xml')
+    @limiter.exempt
+    def sitemap_xml():
+        """Sitemap XML com a página pública indexável."""
+        content = (
+            '<?xml version="1.0" encoding="UTF-8"?>\n'
+            '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+            '  <url>\n'
+            '    <loc>https://cti.segark.com/</loc>\n'
+            '    <changefreq>daily</changefreq>\n'
+            '    <priority>1.0</priority>\n'
+            '  </url>\n'
+            '</urlset>\n'
+        )
+        return Response(content, mimetype='application/xml')
+
     @app.route('/')
     @limiter.limit("10 per minute")
     def index():
@@ -54,27 +87,27 @@ def create_routes(app: Flask, tor_service: TorService, url_service: UrlService, 
         try:
             ips = tor_service.get_exit_nodes()
             cache_info = tor_service.cache_service.get_exit_cache_info()
-            
             content = format_exit_nodes_text(ips, cache_info.last_update)
-            return Response(content, mimetype='text/plain')
-            
-        except Exception as e:
-            logging.error(f"Erro ao buscar tornodes-ip.txt: {e}")
-            error_content = format_exit_nodes_text([], None, str(e))
-            return Response(error_content, mimetype='text/plain', status=500)
+        except Exception:
+            logging.exception("Erro ao buscar tornodes-ip.txt")
+            content = format_exit_nodes_text([], None, unavailable=True)
+        return Response(content, mimetype='text/plain')
 
     @app.route('/honeypot-urls.txt')
     @limiter.limit("30 per minute")
     def honeypot_urls():
-        """Retorna URLs maliciosas do honeypot em formato texto"""
+        """Retorna URLs maliciosas do honeypot em formato texto.
+
+        O serviço de URLs já degrada graciosamente (retorna lista vazia quando o
+        banco está indisponível), então não há vazamento de erro de conexão aqui.
+        """
         try:
             urls, last_update = url_service.get_recent_urls()
             content = format_url_list_text(urls, last_update)
-            return Response(content, mimetype='text/plain')
-        except Exception as e:
-            logging.error(f"Erro ao buscar honeypot-urls.txt: {e}")
-            error_content = format_url_list_text([], None, str(e))
-            return Response(error_content, mimetype='text/plain', status=500)
+        except Exception:
+            logging.exception("Erro inesperado ao buscar honeypot-urls.txt")
+            content = format_url_list_text([], None, unavailable=True)
+        return Response(content, mimetype='text/plain')
 
     @app.route('/status')
     @limiter.limit("60 per minute")
@@ -85,7 +118,7 @@ def create_routes(app: Flask, tor_service: TorService, url_service: UrlService, 
             detailed_cache_info = tor_service.cache_service.get_detailed_cache_info()
             
             status_info = {
-                'service': 'Protexion TorNodes',
+                'service': 'CTI Protexion by Segark',
                 'status': 'online',
                 'cache_exists': exit_cache_info.exists,
                 'last_update': exit_cache_info.last_update.isoformat() 
@@ -104,7 +137,7 @@ def create_routes(app: Flask, tor_service: TorService, url_service: UrlService, 
         except Exception as e:
             logging.error(f"Erro no endpoint de status: {e}")
             return jsonify({
-                'service': 'Protexion TorNodes',
+                'service': 'CTI Protexion by Segark',
                 'status': 'error',
                 'error': str(e),
                 'current_time': datetime.utcnow().isoformat()
